@@ -31,7 +31,12 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                   "Get the best \nguidance",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Color.fromRGBO(143, 143, 143, 1.0),fontSize: 30.h,fontWeight: FontWeight.bold,wordSpacing: 2,fontFamily: ),
+                  style: TextStyle(
+                    color: Color.fromRGBO(143, 143, 143, 1.0),
+                    fontSize: 30.h,
+                    fontWeight: FontWeight.bold,
+                    wordSpacing: 2,
+                  ),
                 ),
               ),
               SizedBox(height: 25.v),
@@ -48,7 +53,8 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 29.h),
                 child: Text(
                   "Our Experties",
-                  style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 11.v),
