@@ -18,23 +18,23 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
       child: Scaffold(
         body: Container(
           width: double.maxFinite,
-          padding: EdgeInsets.only(top: 72.v),
+          padding: EdgeInsets.only(top: 40.v),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildTwentySix(context),
-              SizedBox(height: 37.v),
+              SizedBox(height: 30.v),
               Container(
                 width: 238.h,
                 margin: EdgeInsets.only(left: 26.h),
                 child: Text(
-                  "Get the best guidance ",
+                  "Get the best \nguidance",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.displayMedium,
+                  style: TextStyle(color: Color.fromRGBO(143, 143, 143, 1.0),fontSize: 30.h,fontWeight: FontWeight.bold,wordSpacing: 2,fontFamily: ),
                 ),
               ),
-              SizedBox(height: 9.v),
+              SizedBox(height: 25.v),
               CustomElevatedButton(
                 height: 41.v,
                 width: 151.h,
@@ -48,7 +48,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 29.h),
                 child: Text(
                   "Our Experties",
-                  style: CustomTextStyles.titleMediumInterOnErrorContainer,
+                  style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 11.v),

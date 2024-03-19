@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           theme: theme,
           title: 'random_s_application4',
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.notificationScreen,
+          initialRoute: AppRoutes.homeScreenConsulteeScreen,
           routes: AppRoutes.routes,
         );
       },

@@ -16,38 +16,25 @@ class NotificationscreenItemWidget extends StatelessWidget {
         borderRadius: BorderRadiusStyle.roundedBorder10,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: 78.v,
+            height: 75.v,
             width: 75.h,
-            margin: EdgeInsets.only(bottom: 4.v),
+            margin: EdgeInsets.only(left: 10.h,right: 10.h),
             child: Stack(
               alignment: Alignment.topLeft,
               children: [
                 CustomImageView(
                   imagePath: ImageConstant.imgRectangle2,
                   height: 74.v,
-                  width: 50.h,
+                  width: 74.h,
                   radius: BorderRadius.circular(
                     10.h,
                   ),
-                  alignment: Alignment.bottomRight,
                 ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    height: 20.adaptSize,
-                    width: 20.adaptSize,
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      borderRadius: BorderRadius.circular(
-                        10.h,
-                      ),
-                    ),
-                  ),
-                ),
+
               ],
             ),
           ),
@@ -60,13 +47,13 @@ class NotificationscreenItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 117.h,
+                  width: 200.h,
                   margin: EdgeInsets.only(left: 1.h),
                   child: Text(
-                    "Request from Abhishek",
+                    "Request from \nAbhishek",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.titleMedium,
+                    style: theme.textTheme.titleSmall,
                   ),
                 ),
                 SizedBox(height: 1.v),
