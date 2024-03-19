@@ -1,9 +1,9 @@
-import 'package:bablu_s_application1/widgets/app_bar/custom_app_bar.dart';
-import 'package:bablu_s_application1/widgets/app_bar/appbar_leading_image.dart';
-import 'package:bablu_s_application1/widgets/app_bar/appbar_title.dart';
+import 'package:educonsult/widgets/app_bar/custom_app_bar.dart';
+import 'package:educonsult/widgets/app_bar/appbar_leading_image.dart';
+import 'package:educonsult/widgets/app_bar/appbar_title.dart';
 import 'widgets/notificationscreen_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:bablu_s_application1/core/app_export.dart';
+import 'package:educonsult/core/app_export.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);

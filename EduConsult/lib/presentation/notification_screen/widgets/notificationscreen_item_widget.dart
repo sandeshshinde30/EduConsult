@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bablu_s_application1/core/app_export.dart';
+import 'package:educonsult/core/app_export.dart';
 
 // ignore: must_be_immutable
 class NotificationscreenItemWidget extends StatelessWidget {
@@ -29,7 +29,7 @@ class NotificationscreenItemWidget extends StatelessWidget {
                 CustomImageView(
                   imagePath: ImageConstant.imgRectangle2,
                   height: 74.v,
-                  width: 71.h,
+                  width: 50.h,
                   radius: BorderRadius.circular(
                     10.h,
                   ),
@@ -63,17 +63,13 @@ class NotificationscreenItemWidget extends StatelessWidget {
                   width: 117.h,
                   margin: EdgeInsets.only(left: 1.h),
                   child: Text(
-                    "Request from \nAbhishek",
+                    "Request from Abhishek",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.titleMedium,
                   ),
                 ),
                 SizedBox(height: 1.v),
-                Text(
-                  "Walchand College of Enginerring",
-                  style: theme.textTheme.labelLarge,
-                ),
               ],
             ),
           ),

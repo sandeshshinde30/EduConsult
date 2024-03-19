@@ -1,7 +1,7 @@
-import 'package:bablu_s_application1/presentation/consultee_profile_page/consultee_profile_page.dart';
-import 'package:bablu_s_application1/widgets/custom_bottom_bar.dart';
+import 'package:educonsult/presentation/consultee_profile_page/consultee_profile_page.dart';
+import 'package:educonsult/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:bablu_s_application1/core/app_export.dart';
+import 'package:educonsult/core/app_export.dart';
 
 // ignore_for_file: must_be_immutable
 class ConsulteeProfileContainerScreen extends StatelessWidget {

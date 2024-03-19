@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bablu_s_application1/core/app_export.dart';
+import 'package:educonsult/core/app_export.dart';
 
 // ignore: must_be_immutable
 class AppbarTitleCircleimage extends StatelessWidget {

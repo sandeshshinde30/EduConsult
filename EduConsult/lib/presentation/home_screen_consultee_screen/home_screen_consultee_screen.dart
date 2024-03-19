@@ -1,8 +1,8 @@
-import 'package:bablu_s_application1/presentation/consultee_profile_page/consultee_profile_page.dart';
-import 'package:bablu_s_application1/widgets/custom_elevated_button.dart';
-import 'package:bablu_s_application1/widgets/custom_bottom_bar.dart';
+import 'package:educonsult/presentation/consultee_profile_page/consultee_profile_page.dart';
+import 'package:educonsult/widgets/custom_elevated_button.dart';
+import 'package:educonsult/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:bablu_s_application1/core/app_export.dart';
+import 'package:educonsult/core/app_export.dart';
 
 class HomeScreenConsulteeScreen extends StatelessWidget {
   HomeScreenConsulteeScreen({Key? key})

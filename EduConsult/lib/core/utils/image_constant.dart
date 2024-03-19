@@ -23,4 +23,29 @@ class ImageConstant {
   static String imgFacebook = '$imagePath/img_facebook.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+
+  static String imgEllipse12 = '$imagePath/img_ellipse_12.png';
+
+  // notification_screen images
+  static String imgRectangle2 = '$imagePath/img_rectangle_2.png';
+
+  // home_screen_consultee images
+  static String imgRectangle262x63 = '$imagePath/img_rectangle_2_62x63.png';
+
+  static String imgNotificationsUnread =
+      '$imagePath/img_notifications_unread.svg';
+
+
+  // Bablu new added images - 5 to 8
+  static String imgArrowLeft = '$imagePath/img_arrow_left.svg';
+
+  static String imgEllipse12111x110 = '$imagePath/img_ellipse_12_111x110.png';
+
+  static String imgNavHome = '$imagePath/img_nav_home.svg';
+
+  static String imgNavCollege = '$imagePath/img_nav_college.svg';
+
+  static String imgNavChat = '$imagePath/img_nav_chat.svg';
+
+  static String imgContrast = '$imagePath/img_contrast.svg';
 }

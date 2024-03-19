@@ -160,6 +160,28 @@ class PrimaryColors {
 
   // White
   Color get whiteA700 => Color(0XFFFFFFFF);
+
+  Color get blue900 => Color(0XFF1A35C2);
+
+  // BlueGray
+  Color get blueGray100 => Color(0XFFD9D9D9);
+  Color get blueGray400 => Color(0XFF8D8D8D);
+  Color get blueGray40001 => Color(0XFF8C8F99);
+  Color get blueGray900 => Color(0XFF172452);
+
+  // Gray
+  Color get gray20001 => Color(0XFFEEEEEE);
+  Color get gray20002 => Color(0XFFF0F0F0);
+  Color get gray20003 => Color(0XFFEAE8E8);
+  Color get gray400 => Color(0XFFBFBFBF);
+  Color get gray900 => Color(0XFF181818);
+
+  // Indigo
+  Color get indigo900 => Color(0XFF24265F);
+
+  // LightBlueE
+  Color get lightBlue600E2 => Color(0XE2169BD7);
+
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();
