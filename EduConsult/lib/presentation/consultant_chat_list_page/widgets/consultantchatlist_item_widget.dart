@@ -11,6 +11,7 @@ class ConsultantchatlistItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 15,right: 15),
       padding: EdgeInsets.all(7.h),
       decoration: AppDecoration.outlinePrimaryContainer.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder14,
@@ -19,24 +20,27 @@ class ConsultantchatlistItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomImageView(
-            imagePath: ImageConstant.imgEllipse6,
-            height: 50.adaptSize,
-            width: 50.adaptSize,
+            imagePath: ImageConstant.imgEllipse12,
+            height: 55.adaptSize,
+            width: 55.adaptSize,
             radius: BorderRadius.circular(
               25.h,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
-              left: 12.h,
-              top: 11.v,
-              bottom: 15.v,
+              padding: EdgeInsets.only(
+                left: 11.h,
+                top: 11.v,
+                bottom: 15.v,
+              ),
+
+              child: Text(
+                "Esther Howard",
+                style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
+
+              ),
             ),
-            child: Text(
-              "Esther Howard",
-              style: CustomTextStyles.titleMediumPoppinsGray90001,
-            ),
-          ),
+
           Spacer(),
           Padding(
             padding: EdgeInsets.only(
@@ -47,7 +51,7 @@ class ConsultantchatlistItemWidget extends StatelessWidget {
               children: [
                 Text(
                   "15.29",
-                  style: theme.textTheme.bodySmall,
+                  style: TextStyle(color: Colors.black,fontSize: 15),
                 ),
                 SizedBox(height: 1.v),
                 Container(

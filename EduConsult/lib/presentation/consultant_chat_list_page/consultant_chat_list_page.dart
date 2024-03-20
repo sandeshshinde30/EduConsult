@@ -18,14 +18,15 @@ class ConsultantChatListPage extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
+          margin: EdgeInsets.only(top: 30),
           width: double.maxFinite,
           decoration: AppDecoration.fillWhiteA,
           child: Column(
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  left: 6.h,
-                  right: 10.h,
+                  left: 20.h,
+                  right: 20.h,
                 ),
                 child: CustomSearchView(
                   controller: searchController,
@@ -33,12 +34,13 @@ class ConsultantChatListPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 25.v),
-              Divider(
-                color: appTheme.blueGray50,
-                indent: 10.h,
-                endIndent: 10.h,
-              ),
-              SizedBox(height: 21.v),
+              // Divider(
+              //   color: appTheme.blueGray50,
+              //   height: 5,
+              //   indent: 10.h,
+              //   endIndent: 10.h,
+              // ),
+              SizedBox(height: 0.v),
               _buildConsultantchatlist(context),
             ],
           ),
@@ -58,7 +60,7 @@ class ConsultantChatListPage extends StatelessWidget {
           index,
         ) {
           return SizedBox(
-            height: 18.v,
+            height: 10,
           );
         },
         itemCount: 2,

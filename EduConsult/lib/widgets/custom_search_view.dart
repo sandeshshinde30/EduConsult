@@ -104,7 +104,7 @@ class CustomSearchView extends StatelessWidget {
         hintStyle: hintStyle ?? CustomTextStyles.titleLargeGray900,
         prefixIcon: prefix ??
             Container(
-              margin: EdgeInsets.fromLTRB(23.h, 11.v, 11.h, 15.v),
+              margin: EdgeInsets.fromLTRB(0.h, 11.v, 11.h, 15.v),
               child: CustomImageView(
                 imagePath: ImageConstant.imgSearch,
                 height: 24.adaptSize,
