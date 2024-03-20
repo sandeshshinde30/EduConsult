@@ -33,6 +33,12 @@ class CustomBottomBarState extends State<CustomBottomBar> {
       activeIcon: ImageConstant.imgNavChat,
       title: "Chat",
       type: BottomBarEnum.Chat,
+    ),
+    BottomMenuModel(
+      icon: ImageConstant.imgNavChat,
+      activeIcon: ImageConstant.imgNavChat,
+      title: "Profile",
+      type: BottomBarEnum.Chat,
     )
   ];
 
@@ -123,6 +129,7 @@ enum BottomBarEnum {
   Home,
   College,
   Chat,
+  Profile,
 }
 
 class BottomMenuModel {
