@@ -21,9 +21,9 @@ class ConsultantProfileScreen extends StatelessWidget {
   TextEditingController twentyTwoController1 = TextEditingController();
 
   List<String> dropdownItemList = [
-    "Item One",
-    "Item Two",
-    "Item Three",
+    "Second Year",
+    "Third Year",
+    "Fourth Year"
   ];
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
@@ -47,7 +47,7 @@ class ConsultantProfileScreen extends StatelessWidget {
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(
                   horizontal: 17.h,
-                  vertical: 51.v,
+                  vertical: 15.v,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +56,7 @@ class ConsultantProfileScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         "Profile",
-                        style: theme.textTheme.titleLarge,
+                        style: TextStyle(color: Color(0xFF172452),fontSize: 30),
                       ),
                     ),
                     SizedBox(height: 12.v),
@@ -69,16 +69,9 @@ class ConsultantProfileScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             CustomImageView(
-                              imagePath: ImageConstant.imgUser,
-                              height: 15.adaptSize,
-                              width: 15.adaptSize,
-                              alignment: Alignment.bottomRight,
-                              margin: EdgeInsets.only(right: 3.h),
-                            ),
-                            CustomImageView(
                               imagePath: ImageConstant.imgEllipse12,
-                              height: 75.adaptSize,
-                              width: 75.adaptSize,
+                              height: 100.adaptSize,
+                              width: 100.adaptSize,
                               radius: BorderRadius.circular(
                                 37.h,
                               ),
@@ -88,7 +81,7 @@ class ConsultantProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 27.v),
+                    SizedBox(height: 20.v),
                     Text(
                       "Name",
                       style: theme.textTheme.titleMedium,
@@ -100,21 +93,21 @@ class ConsultantProfileScreen extends StatelessWidget {
                       "Email",
                       style: theme.textTheme.titleMedium,
                     ),
-                    SizedBox(height: 4.v),
+                    SizedBox(height: 3.v),
                     _buildEmail(context),
                     SizedBox(height: 13.v),
                     Text(
                       "College",
                       style: theme.textTheme.titleMedium,
                     ),
-                    SizedBox(height: 2.v),
+                    SizedBox(height: 3.v),
                     _buildTwentyTwo(context),
                     SizedBox(height: 13.v),
                     Text(
                       "Department",
                       style: theme.textTheme.titleMedium,
                     ),
-                    SizedBox(height: 2.v),
+                    SizedBox(height: 3.v),
                     _buildTwentyTwo1(context),
                     SizedBox(height: 12.v),
                     Text(
@@ -122,20 +115,18 @@ class ConsultantProfileScreen extends StatelessWidget {
                       style: theme.textTheme.titleMedium,
                     ),
                     SizedBox(height: 3.v),
-                    Padding(
-                      padding: EdgeInsets.only(right: 8.h),
-                      child: CustomDropDown(
-                        icon: Container(
-                          margin: EdgeInsets.fromLTRB(30.h, 16.v, 20.h, 16.v),
-                          child: CustomImageView(
-                            imagePath: ImageConstant.imgArrowdown,
-                            height: 11.v,
-                            width: 14.h,
-                          ),
-                        ),
-                        hintText: "Second Year",
-                        items: dropdownItemList,
-                      ),
+                    CustomDropDown(
+                      // icon: Container(
+                      //   margin: EdgeInsets.fromLTRB(30.h, 16.v, 20.h, 16.v),
+                      //   child: CustomImageView(
+                      //     imagePath: ImageConstant.imgArrowdown,
+                      //     height: 11.v,
+                      //     width: 14.h,
+                      //   ),
+                      // ),
+
+                      hintText: "Second Year",
+                      items: dropdownItemList,
                     ),
                     SizedBox(height: 36.v),
                     _buildSaveChanges(context),
@@ -153,47 +144,39 @@ class ConsultantProfileScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildName(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 8.h),
-      child: CustomTextFormField(
-        controller: nameController,
-        hintText: "Robert Fox",
-      ),
+    return CustomTextFormField(
+      controller: nameController,
+      hintText: "Enter Name",
+      autofocus: false,
     );
   }
 
   /// Section Widget
   Widget _buildEmail(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 8.h),
-      child: CustomTextFormField(
-        controller: emailController,
-        hintText: "robertfox@gmail.com",
-        textInputType: TextInputType.emailAddress,
-      ),
+    return CustomTextFormField(
+      controller: emailController,
+      hintText: "Enter Email Id",
+      textInputType: TextInputType.emailAddress,
+      autofocus: false,
     );
   }
 
   /// Section Widget
   Widget _buildTwentyTwo(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 8.h),
-      child: CustomTextFormField(
-        controller: twentyTwoController,
-        hintText: "Walchand College Of Engineering ",
-      ),
+    return CustomTextFormField(
+      controller: twentyTwoController,
+      hintText: "Enter College Name",
+      autofocus: false,
     );
   }
 
   /// Section Widget
   Widget _buildTwentyTwo1(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 8.h),
-      child: CustomTextFormField(
-        controller: twentyTwoController1,
-        hintText: "Information technology",
-        textInputAction: TextInputAction.done,
-      ),
+    return CustomTextFormField(
+      controller: twentyTwoController1,
+      hintText: "Enter Department",
+      textInputAction: TextInputAction.done,
+      autofocus: false,
     );
   }
 
