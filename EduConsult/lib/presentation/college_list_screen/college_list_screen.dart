@@ -29,7 +29,7 @@ class CollegeListScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 106.h),
                 child: Text(
                   "Colleges",
-                  style: theme.textTheme.titleLarge,
+                  style: TextStyle(color: Color.fromARGB(255, 17, 24, 52),fontSize: 25,fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 37.v),

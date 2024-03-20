@@ -33,7 +33,7 @@ class CollegelistItemWidget extends StatelessWidget {
                 "Walchand College of Engineering, sangli",
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: CustomTextStyles.labelLargeGray90001,
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ),
@@ -44,9 +44,15 @@ class CollegelistItemWidget extends StatelessWidget {
 
   /// Section Widget
   Widget _buildSixThousandSixHundredOne(BuildContext context) {
-    return CustomElevatedButton(
-      width: 45.h,
-      text: "6601",
+    return Container(
+      height: 50,
+      width: 50,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+            color: Colors.blue
+      ),
+      child:Center(child: Text( "6007",style: TextStyle(color: Colors.white),)),
+
       margin: EdgeInsets.only(top: 1.v),
     );
   }
