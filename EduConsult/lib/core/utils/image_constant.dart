@@ -59,4 +59,8 @@ class ImageConstant {
 
   static String imgEllipse16 = '$imagePath/img_ellipse_16.png';
 
+  static String imgArrowdown = '$imagePath/img_arrowdown.svg';
+
+  static String imgNavRequests = '$imagePath/img_nav_requests.svg';
+
 }

@@ -116,7 +116,33 @@ class TextThemes {
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,
         ),
-      );
+    bodyLarge: TextStyle(
+      color: appTheme.blueGray400,
+      fontSize: 17.fSize,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+    ),
+
+    bodySmall: TextStyle(
+      color: colorScheme.errorContainer,
+      fontSize: 11.fSize,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+    ),
+    displayMedium: TextStyle(
+      color: appTheme.gray400,
+      fontSize: 40.fSize,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w500,
+    ),
+    labelMedium: TextStyle(
+      color: appTheme.blueGray90001,
+      fontSize: 10.fSize,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w700,
+    ),
+  );
+
 }
 
 /// Class containing the supported color schemes.
@@ -197,6 +223,13 @@ class PrimaryColors {
 
   // BlueGray
   Color get blueGray50 => Color(0XFFF1F1F1);
+
+
+  Color get blueGray90001 => Color(0XFF172452);
+
+  // Gray
+  Color get gray100 => Color(0XFFF7F7F7);
+
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();

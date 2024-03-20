@@ -47,6 +47,19 @@ class AppDecoration {
       width: 2.h,
     ),
   );
+  // Fill decorations
+
+  static BoxDecoration get fillPrimaryContainer => BoxDecoration(
+    color: theme.colorScheme.primaryContainer,
+  );
+
+  // Outline decorations
+  static BoxDecoration get outlinePrimaryContainer => BoxDecoration(
+    border: Border.all(
+      color: theme.colorScheme.primaryContainer,
+      width: 2.h,
+    ),
+  );
 }
 
 class BorderRadiusStyle {

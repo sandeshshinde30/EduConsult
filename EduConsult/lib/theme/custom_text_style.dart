@@ -111,6 +111,48 @@ class CustomTextStyles {
   static get titleSmallWhiteA700 => theme.textTheme.titleSmall!.copyWith(
     color: appTheme.whiteA700,
   );
+
+  static get titleLargeBluegray90001 => theme.textTheme.titleLarge!.copyWith(
+    color: appTheme.blueGray90001,
+    fontWeight: FontWeight.w600,
+  );
+  static get titleLargePoppinsGray900 =>
+      theme.textTheme.titleLarge!.poppins.copyWith(
+        color: appTheme.gray900,
+        fontWeight: FontWeight.w400,
+      );
+
+  static get titleMediumBluegray900 => theme.textTheme.titleMedium!.copyWith(
+    color: appTheme.blueGray900,
+    fontSize: 17.fSize,
+    fontWeight: FontWeight.w500,
+  );
+
+  static get titleMediumGray200 => theme.textTheme.titleMedium!.copyWith(
+    color: appTheme.gray200,
+    fontSize: 17.fSize,
+    fontWeight: FontWeight.w500,
+  );
+  static get titleMediumGray20003 => theme.textTheme.titleMedium!.copyWith(
+    color: appTheme.gray20003,
+    fontSize: 18.fSize,
+    fontWeight: FontWeight.w500,
+  );
+  static get titleMediumPoppinsGray90001 =>
+      theme.textTheme.titleMedium!.poppins.copyWith(
+        color: appTheme.gray90001,
+        fontWeight: FontWeight.w600,
+      );
+
+  static get bodyMediumGray20002 => theme.textTheme.bodyMedium!.copyWith(
+    color: appTheme.gray20002,
+  );
+
+  static get titleMediumBluegray90001 => theme.textTheme.titleMedium!.copyWith(
+    color: appTheme.blueGray90001.withOpacity(0.66),
+    fontSize: 18.fSize,
+    fontWeight: FontWeight.w500,
+  );
 }
 
 extension on TextStyle {
