@@ -25,15 +25,15 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
               _buildTwentySix(context),
               SizedBox(height: 30.v),
               Container(
-                width: 238.h,
+                width: 350.h,
                 margin: EdgeInsets.only(left: 26.h),
                 child: Text(
-                  "Get the best \nguidance",
+                  "Discover Unparalleled, \nExquisite Counsel.",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: Color.fromRGBO(143, 143, 143, 1.0),
-                    fontSize: 30.h,
+                    fontSize: 25.h,
                     fontWeight: FontWeight.bold,
                     wordSpacing: 2,
                   ),
@@ -48,13 +48,16 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                 buttonStyle: CustomButtonStyles.fillBlueGray,
                 buttonTextStyle: CustomTextStyles.titleMediumInterGray200,
               ),
-              SizedBox(height: 39.v),
+              SizedBox(height: 35.v),
               Padding(
                 padding: EdgeInsets.only(left: 29.h),
-                child: Text(
+                child: const Text(
                   "Our Experties",
                   style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(height: 11.v),
@@ -164,6 +167,17 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
               Container(
                 height: 110.v,
                 width: 179.h,
+                decoration: BoxDecoration(
+                  color: appTheme.blueGray100,
+                  borderRadius: BorderRadius.circular(
+                    20.h,
+                  ),
+                ),
+              ),
+              Container(
+                height: 110.v,
+                width: 179.h,
+                margin: EdgeInsets.only(left: 21.h),
                 decoration: BoxDecoration(
                   color: appTheme.blueGray100,
                   borderRadius: BorderRadius.circular(

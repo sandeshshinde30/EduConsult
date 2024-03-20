@@ -7,7 +7,20 @@ class CustomButtonStyles {
   static ButtonStyle get fillOnPrimaryContainer => ElevatedButton.styleFrom(
         backgroundColor: theme.colorScheme.onPrimaryContainer,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.h),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(
+              26.h,
+            ),
+            topRight: Radius.circular(
+              26.h,
+            ),
+            bottomLeft: Radius.circular(
+              26.h,
+            ),
+            bottomRight: Radius.circular(
+              26.h,
+            ),
+          ),
         ),
       );
   static ButtonStyle get fillPrimary => ElevatedButton.styleFrom(
@@ -23,30 +36,29 @@ class CustomButtonStyles {
       );
 
   static ButtonStyle get fillBlueGray => ElevatedButton.styleFrom(
-    backgroundColor: appTheme.blueGray900,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20.h),
-    ),
-  );
+        backgroundColor: appTheme.blueGray900,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.h),
+        ),
+      );
 
   static ButtonStyle get fillLightBlueE => ElevatedButton.styleFrom(
-    backgroundColor: appTheme.lightBlue600E2,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(
-          26.h,
+        backgroundColor: appTheme.lightBlue600E2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(
+              26.h,
+            ),
+            topRight: Radius.circular(
+              26.h,
+            ),
+            bottomLeft: Radius.circular(
+              26.h,
+            ),
+            bottomRight: Radius.circular(
+              26.h,
+            ),
+          ),
         ),
-        topRight: Radius.circular(
-          25.h,
-        ),
-        bottomLeft: Radius.circular(
-          26.h,
-        ),
-        bottomRight: Radius.circular(
-          25.h,
-        ),
-      ),
-    ),
-  );
-
+      );
 }
