@@ -29,6 +29,7 @@ class ConsultantChatListPage extends StatelessWidget {
                   right: 20.h,
                 ),
                 child: CustomSearchView(
+                  autofocus: false,
                   controller: searchController,
                   hintText: "Search Chat",
                 ),

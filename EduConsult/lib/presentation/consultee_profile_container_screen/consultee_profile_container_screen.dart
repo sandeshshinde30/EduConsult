@@ -1,5 +1,5 @@
 import 'package:educonsult/presentation/consultee_profile_page/consultee_profile_page.dart';
-import 'package:educonsult/widgets/custom_bottom_bar.dart';
+import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
@@ -35,7 +35,7 @@ class ConsulteeProfileContainerScreen extends StatelessWidget {
     switch (type) {
       case BottomBarEnum.Home:
         return AppRoutes.consulteeProfilePage;
-      case BottomBarEnum.College:
+      case BottomBarEnum.Requests:
         return "/";
       case BottomBarEnum.Chat:
         return "/";

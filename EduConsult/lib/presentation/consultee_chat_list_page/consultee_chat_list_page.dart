@@ -24,8 +24,9 @@ class ConsulteeChatListPage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  left: 6.h,
-                  right: 10.h,
+                  left: 20.h,
+                  right: 20.h,
+                  top: 40.h
                 ),
                 child: CustomSearchView(
                   controller: searchController,
@@ -33,10 +34,6 @@ class ConsulteeChatListPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 25.v),
-              Divider(
-                indent: 10.h,
-                endIndent: 10.h,
-              ),
               SizedBox(height: 21.v),
               _buildConsulteechatlist(context),
             ],
@@ -55,7 +52,8 @@ class ConsulteeChatListPage extends StatelessWidget {
         separatorBuilder: (
           context,
           index,
-        ) {
+            )
+        {
           return SizedBox(
             height: 18.v,
           );

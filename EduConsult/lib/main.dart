@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           theme: theme,
           title: 'EduConsult',
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.consulteeProfileContainerScreen,
+          initialRoute: AppRoutes.consulteeChatListContainerScreen,
           routes: AppRoutes.routes,
         );
       },

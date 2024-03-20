@@ -65,7 +65,7 @@ class ConsultantchatlistItemWidget extends StatelessWidget {
                   ),
                   child: Text(
                     "2",
-                    style: CustomTextStyles.bodyMediumGray20002,
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ],

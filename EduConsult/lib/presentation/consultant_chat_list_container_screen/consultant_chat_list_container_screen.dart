@@ -1,5 +1,5 @@
 import 'package:educonsult/presentation/consultant_chat_list_page/consultant_chat_list_page.dart';
-import 'package:educonsult/widgets/custom_bottom_bar.dart';
+import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
@@ -35,12 +35,13 @@ class ConsultantChatListContainerScreen extends StatelessWidget {
     switch (type) {
       case BottomBarEnum.Home:
         return AppRoutes.consultantChatListPage;
-      case BottomBarEnum.Chat:
+      case BottomBarEnum.Requests:
         return "/";
       case BottomBarEnum.Chat:
         return "/";
-      default:
+      case BottomBarEnum.Chat:
         return "/";
+
     }
   }
 

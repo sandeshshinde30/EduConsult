@@ -12,6 +12,7 @@ class ConsulteechatlistItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(7.h),
+      margin: EdgeInsets.only(left: 10,right: 10),
       decoration: AppDecoration.outlineIndigo.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder14,
       ),
@@ -19,7 +20,7 @@ class ConsulteechatlistItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomImageView(
-            imagePath: ImageConstant.imgEllipse6,
+            imagePath: ImageConstant.imgEllipse12,
             height: 50.adaptSize,
             width: 50.adaptSize,
             radius: BorderRadius.circular(
