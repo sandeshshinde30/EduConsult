@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           theme: theme,
-          title: 'random_s_application4',
+          title: 'EduConsult',
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.homeScreenConsulteeScreen,
+          initialRoute: AppRoutes.loginScreen,
           routes: AppRoutes.routes,
         );
       },

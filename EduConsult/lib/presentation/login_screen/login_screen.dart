@@ -28,12 +28,12 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 40.v),
+                    // SizedBox(height: 10.v),
                     Text(
                       "Login Here",
                       style: TextStyle(fontSize: 25.h,fontFamily: 'Popins',fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(height: 14.v),
+                    SizedBox(height: 15.v),
                     Container(
                       width: 224.h,
                       margin: EdgeInsets.only(
@@ -48,9 +48,9 @@ class LoginScreen extends StatelessWidget {
                         style: CustomTextStyles.titleMediumBluegray800,
                       ),
                     ),
-                    SizedBox(height: 61.v),
+                    SizedBox(height: 45.v),
                     _buildSeventeen(context),
-                    SizedBox(height: 28.v),
+                    SizedBox(height: 20.v),
                     _buildSeventeen1(context),
                     SizedBox(height: 19.v),
                     Align(
@@ -72,9 +72,12 @@ class LoginScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Padding(
                         padding: EdgeInsets.only(right: 0.h),
-                        child: Text(
-                          "Create new account",
-                          style: TextStyle(fontFamily: 'popins',fontSize: 15.h,color: Color(0xFF172452)),
+                        child: InkWell(
+                          onTap: (){Navigator.pushNamed(context, '/registration_screen');},
+                          child: Text(
+                            "Create new account",
+                            style: TextStyle(fontFamily: 'popins',fontSize: 15.h,color: Color(0xFF172452)),
+                          ),
                         ),
                       ),
                     ),
@@ -137,44 +140,11 @@ class LoginScreen extends StatelessWidget {
                               children: [
 
                                 CustomImageView(
-                                  imagePath: ImageConstant.imgMobile,
-                                  height: 10.v,
-                                  width: 19.h,
+                                  imagePath: ImageConstant.googleIcon,
+                                  height: 25.adaptSize,
+                                  width: 25.adaptSize,
                                   alignment: Alignment.bottomLeft,
                                   margin: EdgeInsets.only(left: 1.h),
-                                ),
-                                CustomImageView(
-                                  imagePath: ImageConstant.imgVectorOnerror,
-                                  height: 11.v,
-                                  width: 5.h,
-                                  alignment: Alignment.centerLeft,
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Container(
-                                    height: 10.v,
-                                    width: 19.h,
-                                    margin: EdgeInsets.only(left: 1.h),
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        CustomImageView(
-                                          imagePath:
-                                              ImageConstant.imgUserRed500,
-                                          height: 10.v,
-                                          width: 19.h,
-                                          alignment: Alignment.center,
-                                        ),
-                                        CustomImageView(
-                                          imagePath:
-                                              ImageConstant.imgUserRed500,
-                                          height: 10.v,
-                                          width: 19.h,
-                                          alignment: Alignment.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
                                 ),
                               ],
                             ),
@@ -209,67 +179,22 @@ class LoginScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildSeventeen(BuildContext context) {
-    return SizedBox(
-      height: 50.v,
-      width: 303.h,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: 28.h),
-              child: Text(
-                "Email",
-                style: TextStyle(fontSize: 13.h,fontFamily: 'popins'),
-              ),
-            ),
-          ),
-          CustomTextFormField(
-            autofocus: false,
-            width: 303.h,
-            controller: emailController,
-            hintText: "Email",
-            hintStyle: TextStyle(fontSize: 13.h,fontFamily: 'popins'),
-            textStyle: TextStyle(fontSize: 13.h,fontWeight: FontWeight.bold,fontFamily: 'popins'),
-            textInputType: TextInputType.emailAddress,
-            alignment: Alignment.center,
-          ),
-        ],
-      ),
-    );
+    return
+        CustomTextFormField(
+        controller: passwordController,
+        hintText: "Email",
+        textStyle: theme.textTheme.titleSmall,
+        hintStyle: theme.textTheme.titleMedium,
+        textInputType: TextInputType.visiblePassword,
+      );
   }
 
   Widget _buildSeventeen1(BuildContext context) {
-    return SizedBox(
-      height: 57.v,
-      width: 303.h,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: 28.h),
-              child: Text(
-                "Password",
-                style: TextStyle(fontSize: 13.h),
-              ),
-            ),
-          ),
-          CustomTextFormField(
-            autofocus: false,
-            width: 303.h,
-            controller: passwordController,
-            hintText: "Password",
-            hintStyle: TextStyle(fontSize: 13.h,fontFamily: 'popins'),
-            textStyle: TextStyle(fontSize: 13.h,fontWeight: FontWeight.bold,fontFamily: 'popins'),
-            textInputType: TextInputType.visiblePassword,
-            obscureText: true,
-            alignment: Alignment.center,
-          ),
-        ],
-      ),
+    return CustomTextFormField(
+      controller: passwordController,
+      hintText: "Password",
+      textInputType: TextInputType.visiblePassword,
+      obscureText: true,
     );
   }
 }

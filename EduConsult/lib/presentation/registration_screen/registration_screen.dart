@@ -22,12 +22,7 @@ class RegistrationScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Center(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: Form(
+        body: Form(
               key: _formKey,
               child: Container(
                 width: double.maxFinite,
@@ -69,9 +64,12 @@ class RegistrationScreen extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: Padding(
                         padding: EdgeInsets.only(right: 40.h),
-                        child: Text(
-                          "Already have an account",
-                          style: CustomTextStyles.titleMediumOnPrimary,
+                        child: InkWell(
+                          onTap: (){Navigator.pushNamed(context,'/login_screen');},
+                          child: Text(
+                            "Already have an account",
+                            style: CustomTextStyles.titleMediumOnPrimary,
+                          ),
                         ),
                       ),
                     ),
@@ -98,7 +96,7 @@ class RegistrationScreen extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(left: 7.h),
                             child: Text(
-                              "Or Login with",
+                              "Login with",
                               style: theme.textTheme.bodyMedium,
                             ),
                           ),
@@ -130,51 +128,11 @@ class RegistrationScreen extends StatelessWidget {
                               alignment: Alignment.bottomLeft,
                               children: [
                                 CustomImageView(
-                                  imagePath: ImageConstant.imgUser,
-                                  height: 11.v,
-                                  width: 12.h,
-                                  alignment: Alignment.bottomRight,
-                                  margin: EdgeInsets.only(bottom: 3.v),
-                                ),
-                                CustomImageView(
-                                  imagePath: ImageConstant.imgMobile,
-                                  height: 10.v,
-                                  width: 19.h,
+                                  imagePath: ImageConstant.googleIcon,
+                                  height: 25.adaptSize,
+                                  width: 25.adaptSize,
                                   alignment: Alignment.bottomLeft,
                                   margin: EdgeInsets.only(left: 1.h),
-                                ),
-                                CustomImageView(
-                                  imagePath: ImageConstant.imgVectorOnerror,
-                                  height: 11.v,
-                                  width: 5.h,
-                                  alignment: Alignment.centerLeft,
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Container(
-                                    height: 10.v,
-                                    width: 19.h,
-                                    margin: EdgeInsets.only(left: 1.h),
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        CustomImageView(
-                                          imagePath:
-                                              ImageConstant.imgUserRed500,
-                                          height: 10.v,
-                                          width: 19.h,
-                                          alignment: Alignment.center,
-                                        ),
-                                        CustomImageView(
-                                          imagePath:
-                                              ImageConstant.imgUserRed500,
-                                          height: 10.v,
-                                          width: 19.h,
-                                          alignment: Alignment.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
                                 ),
                               ],
                             ),
@@ -204,8 +162,6 @@ class RegistrationScreen extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
     );
   }
 

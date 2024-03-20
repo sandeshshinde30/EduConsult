@@ -86,7 +86,8 @@ class LoginRegisterScreen extends StatelessWidget {
             height: 45.h,
             text: "Register",
             margin: EdgeInsets.only(left: 23.h),
-            buttonStyle: CustomButtonStyles.fillOnPrimaryContainer,
+            buttonStyle:ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromRGBO(
+                210, 210, 210, 1.0))),
             buttonTextStyle: TextStyle(color: Colors.black,fontSize: 15.h),
           ),
         ],

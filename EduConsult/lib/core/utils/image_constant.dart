@@ -14,6 +14,8 @@ class ImageConstant {
 
   static String imgMobile = '$imagePath/img_mobile.svg';
 
+  static String googleIcon = '$imagePath/icons8-google.svg';
+
   static String imgVectorOnerror = '$imagePath/img_vector_onerror.svg';
 
   static String imgUserRed500 = '$imagePath/img_user_red_500.svg';
