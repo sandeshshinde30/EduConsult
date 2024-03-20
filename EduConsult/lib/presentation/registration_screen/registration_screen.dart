@@ -6,8 +6,8 @@ import 'package:educonsult/core/app_export.dart';
 class RegistrationScreen extends StatelessWidget {
   RegistrationScreen({Key? key})
       : super(
-    key: key,
-  );
+          key: key,
+        );
 
   TextEditingController emailController = TextEditingController();
 
@@ -23,145 +23,147 @@ class RegistrationScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Form(
-              key: _formKey,
-              child: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 28.h),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 45.h),
-                        child: Text(
-                          "Create Account",
-                          style: theme.textTheme.headlineSmall,
-                        ),
-                      ),
+          key: _formKey,
+          child: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 28.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 45.h),
+                    child: Text(
+                      "Create Account",
+                      style: theme.textTheme.headlineSmall,
                     ),
-                    SizedBox(height: 18.v),
-                    SizedBox(
-                      width: 212.h,
-                      child: Text(
-                        "Sign up now to unlock the world of Guidance",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                        style: CustomTextStyles.titleMediumBluegray800,
-                      ),
-                    ),
-                    SizedBox(height: 65.v),
-                    _buildThirteen(context),
-                    SizedBox(height: 22.v),
-                    _buildPassword(context),
-                    SizedBox(height: 22.v),
-                    _buildConfirmpassword(context),
-                    SizedBox(height: 41.v),
-                    _buildSignUp(context),
-                    SizedBox(height: 32.v),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 40.h),
-                        child: InkWell(
-                          onTap: (){Navigator.pushNamed(context,'/login_screen');},
-                          child: Text(
-                            "Already have an account",
-                            style: CustomTextStyles.titleMediumOnPrimary,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 39.v),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 4.h,
-                        right: 12.h,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 10.v,
-                              bottom: 11.v,
-                            ),
-                            child: SizedBox(
-                              width: 89.h,
-                              child: Divider(),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 7.h),
-                            child: Text(
-                              "Login with",
-                              style: theme.textTheme.bodyMedium,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 10.v,
-                              bottom: 11.v,
-                            ),
-                            child: SizedBox(
-                              width: 94.h,
-                              child: Divider(
-                                indent: 5.h,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 36.v),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 78.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 24.v,
-                            width: 25.h,
-                            child: Stack(
-                              alignment: Alignment.bottomLeft,
-                              children: [
-                                CustomImageView(
-                                  imagePath: ImageConstant.googleIcon,
-                                  height: 25.adaptSize,
-                                  width: 25.adaptSize,
-                                  alignment: Alignment.bottomLeft,
-                                  margin: EdgeInsets.only(left: 1.h),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Spacer(
-                            flex: 50,
-                          ),
-                          CustomImageView(
-                            imagePath: ImageConstant.imgVector,
-                            height: 26.v,
-                            width: 23.h,
-                          ),
-                          Spacer(
-                            flex: 49,
-                          ),
-                          CustomImageView(
-                            imagePath: ImageConstant.imgFacebook,
-                            height: 25.adaptSize,
-                            width: 25.adaptSize,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 5.v),
-                  ],
+                  ),
                 ),
-              ),
+                SizedBox(height: 18.v),
+                SizedBox(
+                  width: 212.h,
+                  child: Text(
+                    "Sign up now to unlock the world of Guidance",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: CustomTextStyles.titleMediumBluegray800,
+                  ),
+                ),
+                SizedBox(height: 65.v),
+                _buildThirteen(context),
+                SizedBox(height: 22.v),
+                _buildPassword(context),
+                SizedBox(height: 22.v),
+                _buildConfirmpassword(context),
+                SizedBox(height: 41.v),
+                _buildSignUp(context),
+                SizedBox(height: 32.v),
+                Align(
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/login_screen');
+                    },
+                    child: Text(
+                      "Already have an account",
+                      style: TextStyle(
+                          fontFamily: 'popins',
+                          fontSize: 15.h,
+                          color: Color(0xFF172452)),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 39.v),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 4.h,
+                    right: 12.h,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.v,
+                          bottom: 11.v,
+                        ),
+                        child: SizedBox(
+                          width: 89.h,
+                          child: Divider(),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 7.h),
+                        child: Text(
+                          "Login with",
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.v,
+                          bottom: 11.v,
+                        ),
+                        child: SizedBox(
+                          width: 94.h,
+                          child: Divider(
+                            indent: 5.h,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 36.v),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 78.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 24.v,
+                        width: 25.h,
+                        child: Stack(
+                          alignment: Alignment.bottomLeft,
+                          children: [
+                            CustomImageView(
+                              imagePath: ImageConstant.googleIcon,
+                              height: 25.adaptSize,
+                              width: 25.adaptSize,
+                              alignment: Alignment.bottomLeft,
+                              margin: EdgeInsets.only(left: 1.h),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(
+                        flex: 50,
+                      ),
+                      CustomImageView(
+                        imagePath: ImageConstant.imgVector,
+                        height: 26.v,
+                        width: 23.h,
+                      ),
+                      Spacer(
+                        flex: 49,
+                      ),
+                      CustomImageView(
+                        imagePath: ImageConstant.imgFacebook,
+                        height: 25.adaptSize,
+                        width: 25.adaptSize,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 5.v),
+              ],
             ),
           ),
+        ),
+      ),
     );
   }
 
@@ -229,5 +231,3 @@ class RegistrationScreen extends StatelessWidget {
     );
   }
 }
-
-
