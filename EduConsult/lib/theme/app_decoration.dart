@@ -7,32 +7,34 @@ class AppDecoration {
         color: appTheme.whiteA700,
       );
   static BoxDecoration get fillOnPrimaryContainer => BoxDecoration(
-    color: theme.colorScheme.onPrimaryContainer,
-  );
+        color: theme.colorScheme.onPrimaryContainer,
+      );
   static BoxDecoration get fillGray => BoxDecoration(
-    color: appTheme.gray20003,
-  );
+        color: appTheme.gray20003,
+      );
+  static BoxDecoration get fillBlue => BoxDecoration(
+        color: appTheme.blueGray900,
+      );
 }
 
 class BorderRadiusStyle {
-
   static BorderRadius get circleBorder25 => BorderRadius.circular(
-    25.h,
-  );
+        25.h,
+      );
 
   // Rounded borders
   static BorderRadius get roundedBorder10 => BorderRadius.circular(
-    10.h,
-  );
+        10.h,
+      );
   static BorderRadius get roundedBorder14 => BorderRadius.circular(
-    14.h,
-  );
+        14.h,
+      );
   static BorderRadius get roundedBorder20 => BorderRadius.circular(
-    20.h,
-  );
+        20.h,
+      );
   static BorderRadius get roundedBorder55 => BorderRadius.circular(
-    55.h,
-  );
+        55.h,
+      );
 }
 
 // Comment/Uncomment the below code based on your Flutter SDK version.
