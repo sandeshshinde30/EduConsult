@@ -6,8 +6,8 @@ import 'package:educonsult/core/app_export.dart';
 class RegistrationScreen extends StatelessWidget {
   RegistrationScreen({Key? key})
       : super(
-          key: key,
-        );
+    key: key,
+  );
 
   TextEditingController emailController = TextEditingController();
 
@@ -229,3 +229,5 @@ class RegistrationScreen extends StatelessWidget {
     );
   }
 }
+
+
