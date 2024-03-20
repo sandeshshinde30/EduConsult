@@ -1,5 +1,5 @@
 import 'package:educonsult/presentation/consultee_profile_page/consultee_profile_page.dart';
-import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
+import 'package:educonsult/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
@@ -23,24 +23,35 @@ class ConsulteeProfileContainerScreen extends StatelessWidget {
             bottomNavigationBar: _buildBottomBar(context)));
   }
 
-  /// Section Widget
+
   Widget _buildBottomBar(BuildContext context) {
-    return CustomBottomBar(onChanged: (BottomBarEnum type) {
-      Navigator.pushNamed(navigatorKey.currentContext!, getCurrentRoute(type));
-    });
+    return CustomBottomBar(
+      onChanged: (BottomBarEnum type) {
+        // final currentContext = navigatorKey.currentContext;
+        // if (currentContext != null) {
+        Navigator.pushNamed(context, getCurrentRoute(type));
+        // }
+        // else
+        //   {
+        //     print("Some Problem");
+        //   }
+      },
+    );
   }
 
   ///Handling route based on bottom click actions
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
-        return AppRoutes.consulteeProfilePage;
-      case BottomBarEnum.Requests:
-        return "/";
+        return AppRoutes.homeScreenConsulteeScreen;
+      case BottomBarEnum.College:
+        return AppRoutes.collegeListScreen;
       case BottomBarEnum.Chat:
-        return "/";
+        return AppRoutes.consulteeChatListContainerScreen;
+      case BottomBarEnum.Profile:
+        return AppRoutes.consulteeProfileContainerScreen;
       default:
-        return "/";
+        return '/';
     }
   }
 

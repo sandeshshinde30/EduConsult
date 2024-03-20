@@ -9,8 +9,8 @@ import 'package:educonsult/core/app_export.dart';
 class ConsulteeProfilePage extends StatelessWidget {
   ConsulteeProfilePage({Key? key})
       : super(
-          key: key,
-        );
+    key: key,
+  );
 
   TextEditingController nameController = TextEditingController();
 
@@ -23,45 +23,41 @@ class ConsulteeProfilePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: _buildAppBar(context),
-        body: SizedBox(
-          width: SizeUtils.width,
-          child: SingleChildScrollView(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: Form(
+        // appBar: _buildAppBar(context),
+        body:  Form(
               key: _formKey,
               child: Container(
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(
                   horizontal: 17.h,
-                  vertical: 24.v,
+                  vertical: 10.v,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 30,),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Profile",
+                        style: TextStyle(color: Color(0xFF172452),fontSize: 30),
+                      ),
+                    ),
+                    SizedBox(height: 20.v),
                     Align(
                       alignment: Alignment.center,
                       child: SizedBox(
-                        height: 114.v,
-                        width: 110.h,
+                        height: 77.v,
+                        width: 75.h,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
                             CustomImageView(
-                              imagePath: ImageConstant.imgUser,
-                              height: 22.adaptSize,
-                              width: 22.adaptSize,
-                              alignment: Alignment.bottomRight,
-                              margin: EdgeInsets.only(right: 4.h),
-                            ),
-                            CustomImageView(
-                              imagePath: ImageConstant.imgEllipse12111x110,
-                              height: 111.v,
-                              width: 110.h,
+                              imagePath: ImageConstant.imgEllipse12,
+                              height: 100.adaptSize,
+                              width: 100.adaptSize,
                               radius: BorderRadius.circular(
-                                55.h,
+                                37.h,
                               ),
                               alignment: Alignment.center,
                             ),
@@ -75,12 +71,10 @@ class ConsulteeProfilePage extends StatelessWidget {
                       style: CustomTextStyles.titleMediumInter,
                     ),
                     SizedBox(height: 3.v),
-                    Padding(
-                      padding: EdgeInsets.only(right: 8.h),
-                      child: CustomTextFormField(
-                        controller: nameController,
-                        hintText: "Robert Fox",
-                      ),
+                    CustomTextFormField(
+                      autofocus: false,
+                      controller: nameController,
+                      hintText: "Enter Name",
                     ),
                     SizedBox(height: 11.v),
                     Text(
@@ -88,16 +82,14 @@ class ConsulteeProfilePage extends StatelessWidget {
                       style: CustomTextStyles.titleMediumInter,
                     ),
                     SizedBox(height: 4.v),
-                    Padding(
-                      padding: EdgeInsets.only(right: 8.h),
-                      child: CustomTextFormField(
-                        controller: emailController,
-                        hintText: "robertfox@gmail.com",
-                        textInputAction: TextInputAction.done,
-                        textInputType: TextInputType.emailAddress,
-                      ),
+                    CustomTextFormField(
+                      autofocus: false,
+                      controller: emailController,
+                      hintText: "Enter Email Id",
+                      textInputAction: TextInputAction.done,
+                      textInputType: TextInputType.emailAddress,
                     ),
-                    SizedBox(height: 78.v),
+                    SizedBox(height: 50.v),
                     CustomElevatedButton(
                       height: 45.v,
                       width: 221.h,
@@ -109,8 +101,6 @@ class ConsulteeProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ),
       ),
     );
   }
@@ -118,10 +108,7 @@ class ConsulteeProfilePage extends StatelessWidget {
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
-      centerTitle: true,
-      title: AppbarSubtitle(
-        text: "Profile",
-      ),
+
     );
   }
 }

@@ -49,6 +49,8 @@ class ImageConstant {
 
   static String imgNavChat = '$imagePath/img_nav_chat.svg';
 
+  static String imgProfile = '$imagePath/icons8-male-user-96_-xxxhdpi_.svg';
+
   static String imgContrast = '$imagePath/img_contrast.svg';
 
 

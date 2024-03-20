@@ -71,6 +71,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     CustomElevatedButton(
+                      onPressed: (){Navigator.pushNamed(context,'/college_list_screen');},
                       width: 134.h,
                       text: "Colleges",
                       buttonStyle: CustomButtonStyles.fillLightBlueE,
@@ -78,6 +79,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                           CustomTextStyles.titleMediumInterGray20002,
                     ),
                     CustomElevatedButton(
+                      onPressed: (){Navigator.pushNamed(context,'/consultee_chat_list_container_screen');},
                       width: 134.h,
                       text: "Chats",
                       margin: EdgeInsets.only(left: 8.h),
@@ -205,12 +207,17 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
   Widget _buildBottomBar(BuildContext context) {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {
-        Navigator.pushNamed(
-            navigatorKey.currentContext!, getCurrentRoute(type));
+        // final currentContext = navigatorKey.currentContext;
+        // if (currentContext != null) {
+          Navigator.pushNamed(context, getCurrentRoute(type));
+        // }
+        // else
+        //   {
+        //     print("Some Problem");
+        //   }
       },
     );
   }
@@ -219,13 +226,15 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
-        return AppRoutes.consulteeProfilePage;
+        return AppRoutes.homeScreenConsulteeScreen;
       case BottomBarEnum.College:
-        return "/";
+        return AppRoutes.collegeListScreen;
       case BottomBarEnum.Chat:
-        return "/";
+        return AppRoutes.consulteeChatListContainerScreen;
+      case BottomBarEnum.Profile:
+        return AppRoutes.consulteeProfileContainerScreen;
       default:
-        return "/";
+        return '/';
     }
   }
 

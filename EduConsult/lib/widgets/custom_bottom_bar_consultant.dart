@@ -15,6 +15,8 @@ class CustomBottomBar extends StatefulWidget {
 class CustomBottomBarState extends State<CustomBottomBar> {
   int selectedIndex = 0;
 
+  List<String> NavString = ['/home_screen_consultee_screen','/college_list_screen','/consultee_chat_list_container_screen','/consultee_profile_container_screen'];
+
   List<BottomMenuModel> bottomMenuList = [
     BottomMenuModel(
       icon: ImageConstant.imgNavHome,
@@ -35,10 +37,10 @@ class CustomBottomBarState extends State<CustomBottomBar> {
       type: BottomBarEnum.Chat,
     ),
     BottomMenuModel(
-      icon: ImageConstant.imgNavChat,
-      activeIcon: ImageConstant.imgNavChat,
+      icon: ImageConstant.imgProfile,
+      activeIcon: ImageConstant.imgProfile,
       title: "Profile",
-      type: BottomBarEnum.Chat,
+      type: BottomBarEnum.Profile,
     )
   ];
 
@@ -118,7 +120,9 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         onTap: (index) {
           selectedIndex = index;
           widget.onChanged?.call(bottomMenuList[index].type);
-          setState(() {});
+          setState(() {
+            Navigator.pushNamed(context,NavString[selectedIndex]);
+          });
         },
       ),
     );

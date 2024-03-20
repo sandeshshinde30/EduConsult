@@ -35,10 +35,10 @@ class CustomBottomBarState extends State<CustomBottomBar> {
       type: BottomBarEnum.Chat,
     ),
     BottomMenuModel(
-      icon: ImageConstant.imgNavChat,
-      activeIcon: ImageConstant.imgNavChat,
+      icon: ImageConstant.imgProfile,
+      activeIcon: ImageConstant.imgProfile,
       title: "Profile",
-      type: BottomBarEnum.Chat,
+      type: BottomBarEnum.Profile,
     )
   ];
 
@@ -61,7 +61,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         ],
       ),
       child: BottomNavigationBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black12,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         selectedFontSize: 0,

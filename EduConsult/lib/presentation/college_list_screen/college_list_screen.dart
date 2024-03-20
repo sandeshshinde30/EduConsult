@@ -62,12 +62,17 @@ class CollegeListScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
   Widget _buildBottomBar(BuildContext context) {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {
-        Navigator.pushNamed(
-            navigatorKey.currentContext!, getCurrentRoute(type));
+        // final currentContext = navigatorKey.currentContext;
+        // if (currentContext != null) {
+        Navigator.pushNamed(context, getCurrentRoute(type));
+        // }
+        // else
+        //   {
+        //     print("Some Problem");
+        //   }
       },
     );
   }
@@ -76,13 +81,15 @@ class CollegeListScreen extends StatelessWidget {
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
-        return AppRoutes.consulteeChatListPage;
+        return AppRoutes.homeScreenConsulteeScreen;
       case BottomBarEnum.College:
-        return "/";
+        return AppRoutes.collegeListScreen;
       case BottomBarEnum.Chat:
-        return "/";
+        return AppRoutes.consulteeChatListContainerScreen;
+      case BottomBarEnum.Profile:
+        return AppRoutes.consulteeProfileContainerScreen;
       default:
-        return "/";
+        return '/';
     }
   }
 
