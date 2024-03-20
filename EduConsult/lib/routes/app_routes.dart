@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import '../presentation/chat_screen/chat_screen.dart';
+import '../presentation/college_consultant_list_screen/college_consultant_list_screen.dart';
+import '../presentation/college_list_screen/college_list_screen.dart';
+import '../presentation/consultee_chat_list_container_screen/consultee_chat_list_container_screen.dart';
 import '../presentation/consultee_profile_container_screen/consultee_profile_container_screen.dart';
 import '../presentation/home_screen_consultee_screen/home_screen_consultee_screen.dart';
 import '../presentation/notification_screen/notification_screen.dart';
+import '../presentation/request_list_screen/request_list_screen.dart';
 import '../presentation/splash_screen/splash_screen.dart';
 import '../presentation/login_register_screen/login_register_screen.dart';
 import '../presentation/login_screen/login_screen.dart';
@@ -33,6 +37,19 @@ class AppRoutes {
   static const String homeScreenConsulteeScreen =
       '/home_screen_consultee_screen';
 
+  static const String consulteeChatListPage = '/consultee_chat_list_page';
+
+  static const String consulteeChatListContainerScreen =
+      '/consultee_chat_list_container_screen';
+
+  static const String collegeListScreen = '/college_list_screen';
+
+  static const String collegeConsultantListScreen =
+      '/college_consultant_list_screen';
+
+  static const String requestListScreen = '/request_list_screen';
+
+
 
   static Map<String, WidgetBuilder> routes = {
     splashScreen: (context) => SplashScreen(),
@@ -44,5 +61,10 @@ class AppRoutes {
     consulteeProfileContainerScreen: (context) => ConsulteeProfileContainerScreen(),
     notificationScreen: (context) => NotificationScreen(),
     homeScreenConsulteeScreen: (context) => HomeScreenConsulteeScreen(),
+    consulteeChatListContainerScreen: (context) => ConsulteeChatListContainerScreen(),
+    collegeListScreen: (context) => CollegeListScreen(),
+    collegeConsultantListScreen: (context) => CollegeConsultantListScreen(),
+    requestListScreen: (context) => RequestListScreen(),
+    appNavigationScreen: (context) => AppNavigationScreen()
   };
 }

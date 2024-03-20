@@ -50,4 +50,13 @@ class ImageConstant {
   static String imgNavChat = '$imagePath/img_nav_chat.svg';
 
   static String imgContrast = '$imagePath/img_contrast.svg';
+
+
+  // Common images
+  static String imgSearch = '$imagePath/img_search.svg';
+
+  static String imgEllipse6 = '$imagePath/img_ellipse_6.png';
+
+  static String imgEllipse16 = '$imagePath/img_ellipse_16.png';
+
 }

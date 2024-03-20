@@ -79,6 +79,38 @@ class CustomTextStyles {
         color: theme.colorScheme.onErrorContainer,
         fontWeight: FontWeight.w500,
       );
+
+  static get bodySmallWhiteA700 => theme.textTheme.bodySmall!.copyWith(
+    color: appTheme.whiteA700,
+    fontSize: 8.fSize,
+  );
+  // Label text style
+  static get labelLargeGray90001 => theme.textTheme.labelLarge!.copyWith(
+    color: appTheme.gray90001,
+  );
+  static get labelMediumPoppinsGray800 =>
+      theme.textTheme.labelMedium!.poppins.copyWith(
+        color: appTheme.gray800,
+      );
+  static get labelMediumPoppinsWhiteA700 =>
+      theme.textTheme.labelMedium!.poppins.copyWith(
+        color: appTheme.whiteA700,
+        fontSize: 11.fSize,
+      );
+  // Title text style
+  static get titleLargeGray900 => theme.textTheme.titleLarge!.copyWith(
+    color: appTheme.gray900,
+    fontSize: 20.fSize,
+    fontWeight: FontWeight.w400,
+  );
+  static get titleMediumIndigo900 => theme.textTheme.titleMedium!.copyWith(
+    color: appTheme.indigo900,
+    fontSize: 18.fSize,
+    fontWeight: FontWeight.w700,
+  );
+  static get titleSmallWhiteA700 => theme.textTheme.titleSmall!.copyWith(
+    color: appTheme.whiteA700,
+  );
 }
 
 extension on TextStyle {
@@ -93,4 +125,7 @@ extension on TextStyle {
       fontFamily: 'Poppins',
     );
   }
+
+
+
 }

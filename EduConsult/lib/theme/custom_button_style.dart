@@ -61,4 +61,34 @@ class CustomButtonStyles {
           ),
         ),
       );
+
+  static ButtonStyle get fillLightBlue => ElevatedButton.styleFrom(
+    backgroundColor: appTheme.lightBlue50,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5.h),
+    ),
+  );
+
+  // Outline button style
+  static ButtonStyle get outlineIndigoTL18 => OutlinedButton.styleFrom(
+    backgroundColor: Colors.transparent,
+    side: BorderSide(
+      color: appTheme.indigo900,
+      width: 2,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(18.h),
+    ),
+  );
+  static ButtonStyle get outlineLightBlue => OutlinedButton.styleFrom(
+    backgroundColor: appTheme.lightBlue50,
+    side: BorderSide(
+      color: appTheme.lightBlue50,
+      width: 2,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5.h),
+    ),
+  );
+
 }
