@@ -58,7 +58,7 @@ class CustomOutlinedButton extends BaseButton {
           onPressed: isDisabled ?? false ? null : onPressed ?? () {},
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               leftIcon ?? const SizedBox.shrink(),
               Text(

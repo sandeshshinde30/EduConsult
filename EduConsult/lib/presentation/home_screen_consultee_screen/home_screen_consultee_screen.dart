@@ -131,7 +131,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                     style: CustomTextStyles.titleLargeBluegray40001,
                   ),
                   Text(
-                    "Sam!  👋 ",
+                    "Consultee!  👋 ",
                     style: CustomTextStyles.titleLargeBluegray900,
                   ),
                 ],

@@ -1,6 +1,6 @@
 import 'package:educonsult/presentation/consultee_chat_list_page/consultee_chat_list_page.dart';
 import 'widgets/requestlist_item_widget.dart';
-import 'package:educonsult/widgets/custom_bottom_bar.dart';
+import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
@@ -24,9 +24,12 @@ class RequestListScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Text(
+              const Text(
                 "Requests",
-                style: theme.textTheme.titleLarge,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 17, 24, 52),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 18.v),
               _buildRequestlist(context),
@@ -78,7 +81,7 @@ class RequestListScreen extends StatelessWidget {
     switch (type) {
       case BottomBarEnum.Home:
         return AppRoutes.consulteeChatListPage;
-      case BottomBarEnum.College:
+      case BottomBarEnum.Requests:
         return "/";
       case BottomBarEnum.Chat:
         return "/";

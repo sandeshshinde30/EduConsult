@@ -25,12 +25,12 @@ class RequestlistItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(right: 54.h),
+            padding: EdgeInsets.only(right: 10.h),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomImageView(
-                  imagePath: ImageConstant.imgEllipse6,
+                  imagePath: ImageConstant.imgEllipse12,
                   height: 50.adaptSize,
                   width: 50.adaptSize,
                   radius: BorderRadius.circular(
@@ -45,14 +45,21 @@ class RequestlistItemWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Esther Howard",
-                        style: theme.textTheme.titleMedium,
+                        style: TextStyle(
+                          color: Color.fromRGBO(17, 24, 52, 1),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       SizedBox(height: 3.v),
-                      Text(
+                      const Text(
                         "College Of Engineering Pune",
-                        style: theme.textTheme.bodySmall,
+                        style: TextStyle(
+                          color: Color.fromRGBO(54, 54, 54, 1),
+                          fontSize: 12,
+                        ),
                       ),
                     ],
                   ),
@@ -80,6 +87,10 @@ class RequestlistItemWidget extends StatelessWidget {
     return CustomOutlinedButton(
       width: 123.h,
       text: "Reject",
+      buttonStyle: const ButtonStyle(
+        backgroundColor:
+            MaterialStatePropertyAll(Color.fromRGBO(16, 26, 78, 1)),
+      ),
     );
   }
 
