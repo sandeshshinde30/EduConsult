@@ -22,186 +22,173 @@ class RegistrationScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Center(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: Form(
-              key: _formKey,
-              child: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 28.h),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 45.h),
-                        child: Text(
-                          "Create Account",
-                          style: theme.textTheme.headlineSmall,
+        body: Form(
+          key: _formKey,
+          child: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 28.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 0.v),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Create Account",
+                    style: theme.textTheme.headlineSmall,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 15.v),
+                SizedBox(
+                  width: 212.h,
+                  child: Text(
+                    "Sign up now to unlock the world of Guidance",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: CustomTextStyles.titleMediumBluegray800,
+                  ),
+                ),
+                SizedBox(height: 40.v),
+                _buildEmail(context),
+                SizedBox(height: 18.v),
+                _buildPassword(context),
+                SizedBox(height: 18.v),
+                _buildConfirmpassword(context),
+                SizedBox(height: 41.v),
+                _buildSignUp(context),
+                SizedBox(height: 15.v),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Already have an account ",
+                    style: CustomTextStyles.titleMediumOnPrimary,
+                  ),
+                ),
+                SizedBox(height: 50.v),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 4.h,
+                    right: 12.h,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.v,
+                          bottom: 11.v,
+                        ),
+                        child: SizedBox(
+                          width: 89.h,
+                          child: Divider(),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 18.v),
-                    SizedBox(
-                      width: 212.h,
-                      child: Text(
-                        "Sign up now to unlock the world of Guidance",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                        style: CustomTextStyles.titleMediumBluegray800,
-                      ),
-                    ),
-                    SizedBox(height: 65.v),
-                    _buildThirteen(context),
-                    SizedBox(height: 22.v),
-                    _buildPassword(context),
-                    SizedBox(height: 22.v),
-                    _buildConfirmpassword(context),
-                    SizedBox(height: 41.v),
-                    _buildSignUp(context),
-                    SizedBox(height: 32.v),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 40.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 7.h),
                         child: Text(
-                          "Already have an account",
-                          style: CustomTextStyles.titleMediumOnPrimary,
+                          "Or Login with",
+                          style: theme.textTheme.bodyMedium,
                         ),
                       ),
-                    ),
-                    SizedBox(height: 39.v),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 4.h,
-                        right: 12.h,
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.v,
+                          bottom: 11.v,
+                        ),
+                        child: SizedBox(
+                          width: 94.h,
+                          child: Divider(
+                            indent: 5.h,
+                          ),
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 10.v,
-                              bottom: 11.v,
+                    ],
+                  ),
+                ),
+                SizedBox(height: 36.v),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 78.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 24.v,
+                        width: 25.h,
+                        child: Stack(
+                          alignment: Alignment.bottomLeft,
+                          children: [
+                            CustomImageView(
+                              imagePath: ImageConstant.imgUser,
+                              height: 11.v,
+                              width: 12.h,
+                              alignment: Alignment.bottomRight,
+                              margin: EdgeInsets.only(bottom: 3.v),
                             ),
-                            child: SizedBox(
-                              width: 89.h,
-                              child: Divider(),
+                            CustomImageView(
+                              imagePath: ImageConstant.imgMobile,
+                              height: 10.v,
+                              width: 19.h,
+                              alignment: Alignment.bottomLeft,
+                              margin: EdgeInsets.only(left: 1.h),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 7.h),
-                            child: Text(
-                              "Or Login with",
-                              style: theme.textTheme.bodyMedium,
+                            CustomImageView(
+                              imagePath: ImageConstant.imgVectorOnerror,
+                              height: 11.v,
+                              width: 5.h,
+                              alignment: Alignment.centerLeft,
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 10.v,
-                              bottom: 11.v,
-                            ),
-                            child: SizedBox(
-                              width: 94.h,
-                              child: Divider(
-                                indent: 5.h,
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Container(
+                                height: 10.v,
+                                width: 19.h,
+                                margin: EdgeInsets.only(left: 1.h),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    CustomImageView(
+                                      imagePath: ImageConstant.imgUserRed500,
+                                      height: 10.v,
+                                      width: 19.h,
+                                      alignment: Alignment.center,
+                                    ),
+                                    CustomImageView(
+                                      imagePath: ImageConstant.imgUserRed500,
+                                      height: 10.v,
+                                      width: 19.h,
+                                      alignment: Alignment.center,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 36.v),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 78.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 24.v,
-                            width: 25.h,
-                            child: Stack(
-                              alignment: Alignment.bottomLeft,
-                              children: [
-                                CustomImageView(
-                                  imagePath: ImageConstant.imgUser,
-                                  height: 11.v,
-                                  width: 12.h,
-                                  alignment: Alignment.bottomRight,
-                                  margin: EdgeInsets.only(bottom: 3.v),
-                                ),
-                                CustomImageView(
-                                  imagePath: ImageConstant.imgMobile,
-                                  height: 10.v,
-                                  width: 19.h,
-                                  alignment: Alignment.bottomLeft,
-                                  margin: EdgeInsets.only(left: 1.h),
-                                ),
-                                CustomImageView(
-                                  imagePath: ImageConstant.imgVectorOnerror,
-                                  height: 11.v,
-                                  width: 5.h,
-                                  alignment: Alignment.centerLeft,
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Container(
-                                    height: 10.v,
-                                    width: 19.h,
-                                    margin: EdgeInsets.only(left: 1.h),
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        CustomImageView(
-                                          imagePath:
-                                              ImageConstant.imgUserRed500,
-                                          height: 10.v,
-                                          width: 19.h,
-                                          alignment: Alignment.center,
-                                        ),
-                                        CustomImageView(
-                                          imagePath:
-                                              ImageConstant.imgUserRed500,
-                                          height: 10.v,
-                                          width: 19.h,
-                                          alignment: Alignment.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Spacer(
-                            flex: 50,
-                          ),
-                          CustomImageView(
-                            imagePath: ImageConstant.imgVector,
-                            height: 26.v,
-                            width: 23.h,
-                          ),
-                          Spacer(
-                            flex: 49,
-                          ),
-                          CustomImageView(
-                            imagePath: ImageConstant.imgFacebook,
-                            height: 25.adaptSize,
-                            width: 25.adaptSize,
-                          ),
-                        ],
+                      Spacer(
+                        flex: 50,
                       ),
-                    ),
-                    SizedBox(height: 5.v),
-                  ],
+                      CustomImageView(
+                        imagePath: ImageConstant.imgVector,
+                        height: 26.v,
+                        width: 23.h,
+                      ),
+                      Spacer(
+                        flex: 49,
+                      ),
+                      CustomImageView(
+                        imagePath: ImageConstant.imgFacebook,
+                        height: 25.adaptSize,
+                        width: 25.adaptSize,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                SizedBox(height: 5.v),
+              ],
             ),
           ),
         ),
@@ -234,7 +221,8 @@ class RegistrationScreen extends StatelessWidget {
               padding: EdgeInsets.only(left: 28.h),
               child: Text(
                 "Email",
-                style: theme.textTheme.titleMedium,
+                // style: theme.textTheme.titleMedium,
+                style: TextStyle(fontSize: 0.h, fontFamily: 'popins'),
               ),
             ),
           ),
