@@ -170,6 +170,7 @@ class RegistrationScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildEmail(BuildContext context) {
     return CustomTextFormField(
+      autofocus: false,
       width: 303.h,
       controller: emailController,
       hintText: "Email",
@@ -205,6 +206,7 @@ class RegistrationScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildPassword(BuildContext context) {
     return CustomTextFormField(
+      autofocus: false,
       controller: passwordController,
       hintText: "Password",
       textInputType: TextInputType.visiblePassword,
@@ -215,6 +217,7 @@ class RegistrationScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildConfirmpassword(BuildContext context) {
     return CustomTextFormField(
+      autofocus: false,
       controller: confirmpasswordController,
       hintText: "Confirm Password",
       textInputAction: TextInputAction.done,
@@ -226,6 +229,7 @@ class RegistrationScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildSignUp(BuildContext context) {
     return CustomElevatedButton(
+      onPressed: (){Navigator.pushNamed(context, '/home_screen_consultee_screen');},
       height: 50.v,
       text: "Sign up",
     );

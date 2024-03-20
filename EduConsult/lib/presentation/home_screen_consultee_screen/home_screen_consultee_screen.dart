@@ -110,6 +110,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomImageView(
+              onTap: (){Navigator.pushNamed(context, '/consultee_profile_container_screen');},
               imagePath: ImageConstant.imgRectangle262x63,
               height: 62.v,
               width: 63.h,
@@ -139,6 +140,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
             ),
             Spacer(),
             CustomImageView(
+              onTap: (){Navigator.pushNamed(context,'/notification_screen');},
               imagePath: ImageConstant.imgNotificationsUnread,
               height: 28.v,
               width: 27.h,

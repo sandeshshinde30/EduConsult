@@ -34,14 +34,13 @@ class ConsultantChatListContainerScreen extends StatelessWidget {
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
-        return AppRoutes.consultantChatListPage;
+        return AppRoutes.consulteeProfilePage;
       case BottomBarEnum.Requests:
         return "/";
       case BottomBarEnum.Chat:
         return "/";
-      case BottomBarEnum.Chat:
+      default:
         return "/";
-
     }
   }
 

@@ -129,6 +129,7 @@ enum BottomBarEnum {
   Home,
   Requests,
   Chat,
+  Profile,
 }
 
 class BottomMenuModel {

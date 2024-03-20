@@ -62,6 +62,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 35.v),
                 CustomElevatedButton(
+                  onPressed: (){Navigator.pushNamed(context, '/home_screen_consultee_screen');},
                   height: 50.v,
                   width:  MediaQuery.of(context).size.width,
                   buttonTextStyle: TextStyle(fontSize: 18.h,fontFamily: 'popins',color: Colors.white),
@@ -181,6 +182,7 @@ class LoginScreen extends StatelessWidget {
   Widget _buildSeventeen(BuildContext context) {
     return
       CustomTextFormField(
+        autofocus: false,
         controller: passwordController,
         hintText: "Email",
         textStyle: theme.textTheme.titleSmall,
@@ -191,6 +193,7 @@ class LoginScreen extends StatelessWidget {
 
   Widget _buildSeventeen1(BuildContext context) {
     return CustomTextFormField(
+      autofocus: false,
       controller: passwordController,
       hintText: "Password",
       textInputType: TextInputType.visiblePassword,

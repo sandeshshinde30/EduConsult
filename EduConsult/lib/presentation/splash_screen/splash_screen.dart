@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   // After 2 seconds it will call intro screen
   Future<void> timing() async
   {
-    Timer(Duration(seconds: 2),()=>Navigator.pushNamed(context, '/login_register_screen'));
+    Timer(Duration(seconds: 5),()=>Navigator.pushNamed(context, '/login_register_screen'));
   }
 
   @override

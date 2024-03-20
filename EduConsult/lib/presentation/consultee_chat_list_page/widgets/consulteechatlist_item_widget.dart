@@ -70,7 +70,7 @@ class ConsulteechatlistItemWidget extends StatelessWidget {
                   ),
                   child: Text(
                     "2",
-                    style: theme.textTheme.bodyMedium,
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ],
