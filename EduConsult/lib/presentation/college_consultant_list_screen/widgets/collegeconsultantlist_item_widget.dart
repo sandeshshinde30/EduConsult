@@ -1,4 +1,5 @@
 import 'package:educonsult/widgets/custom_elevated_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
@@ -32,9 +33,11 @@ class CollegeconsultantlistItemWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: 3.v),
-          Text(
-            "Gautam  Adani",
-            style: CustomTextStyles.labelMediumPoppinsWhiteA700,
+          Center(
+            child: Text(
+              "Gautam Adani",
+              style: CustomTextStyles.labelMediumPoppinsWhiteA700,
+            ),
           ),
           SizedBox(height: 1.v),
           Text(

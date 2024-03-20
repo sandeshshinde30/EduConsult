@@ -95,7 +95,7 @@ class CustomTextStyles {
   static get labelMediumPoppinsWhiteA700 =>
       theme.textTheme.labelMedium!.poppins.copyWith(
         color: appTheme.whiteA700,
-        fontSize: 11.fSize,
+        fontSize: 9.fSize,
       );
   // Title text style
   static get titleLargeGray900 => theme.textTheme.titleLarge!.copyWith(

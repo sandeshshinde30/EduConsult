@@ -21,8 +21,7 @@ class CollegeConsultantListScreen extends StatelessWidget {
                     .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Container(
-                      width: 193.h,
-                      margin: EdgeInsets.only(left: 45.h, right: 35.h),
+                      width: 300.h,
                       child: Text("Walchand College of Engineering, Sangli",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -44,13 +43,10 @@ class CollegeConsultantListScreen extends StatelessWidget {
               onTapArrowLeft(context);
             }),
         centerTitle: true,
-        title: SizedBox(
-            height: 32.999996.v,
-            width: 139.h,
-            child: Stack(alignment: Alignment.center, children: [
+        title:  Stack(alignment: Alignment.center, children: [
+              // SizedBox(height: 50.h,),
               AppbarTitle(text: "Consultants"),
-              AppbarTitle(text: "Consultants")
-            ])));
+            ]));
   }
 
   /// Section Widget
