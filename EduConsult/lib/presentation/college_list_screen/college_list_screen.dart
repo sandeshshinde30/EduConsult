@@ -55,7 +55,7 @@ class CollegeListScreen extends StatelessWidget {
           height: 22.v,
         );
       },
-      itemCount: 5,
+      itemCount: 1,
       itemBuilder: (context, index) {
         return CollegelistItemWidget();
       },
