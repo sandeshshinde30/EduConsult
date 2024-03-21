@@ -24,83 +24,85 @@ class ConsulteeProfilePage extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         // appBar: _buildAppBar(context),
-        body:  Form(
-              key: _formKey,
-              child: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 17.h,
-                  vertical: 10.v,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 30,),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Profile",
-                        style: TextStyle(color: Color(0xFF172452),fontSize: 30),
-                      ),
+        body:  SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Container(
+              width: double.maxFinite,
+              padding: EdgeInsets.symmetric(
+                horizontal: 17.h,
+                vertical: 10.v,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 30,),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Profile",
+                      style: TextStyle(color: Color(0xFF172452),fontSize: 30),
                     ),
-                    SizedBox(height: 20.v),
-                    Align(
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        height: 77.v,
-                        width: 75.h,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            CustomImageView(
-                              imagePath: ImageConstant.imgEllipse12,
-                              height: 100.adaptSize,
-                              width: 100.adaptSize,
-                              radius: BorderRadius.circular(
-                                37.h,
-                              ),
-                              alignment: Alignment.center,
+                  ),
+                  SizedBox(height: 20.v),
+                  Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      height: 77.v,
+                      width: 75.h,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          CustomImageView(
+                            imagePath: ImageConstant.imgEllipse12,
+                            height: 100.adaptSize,
+                            width: 100.adaptSize,
+                            radius: BorderRadius.circular(
+                              37.h,
                             ),
-                          ],
-                        ),
+                            alignment: Alignment.center,
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 19.v),
-                    Text(
-                      "Name",
-                      style: CustomTextStyles.titleMediumInter,
-                    ),
-                    SizedBox(height: 3.v),
-                    CustomTextFormField(
-                      autofocus: false,
-                      controller: nameController,
-                      hintText: "Enter Name",
-                    ),
-                    SizedBox(height: 11.v),
-                    Text(
-                      "Email",
-                      style: CustomTextStyles.titleMediumInter,
-                    ),
-                    SizedBox(height: 4.v),
-                    CustomTextFormField(
-                      autofocus: false,
-                      controller: emailController,
-                      hintText: "Enter Email Id",
-                      textInputAction: TextInputAction.done,
-                      textInputType: TextInputType.emailAddress,
-                    ),
-                    SizedBox(height: 50.v),
-                    CustomElevatedButton(
-                      height: 45.v,
-                      width: 221.h,
-                      text: "Save changes",
-                      alignment: Alignment.center,
-                    ),
-                    SizedBox(height: 5.v),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 19.v),
+                  Text(
+                    "Name",
+                    style: CustomTextStyles.titleMediumInter,
+                  ),
+                  SizedBox(height: 3.v),
+                  CustomTextFormField(
+                    autofocus: false,
+                    controller: nameController,
+                    hintText: "Enter Name",
+                  ),
+                  SizedBox(height: 11.v),
+                  Text(
+                    "Email",
+                    style: CustomTextStyles.titleMediumInter,
+                  ),
+                  SizedBox(height: 4.v),
+                  CustomTextFormField(
+                    autofocus: false,
+                    controller: emailController,
+                    hintText: "Enter Email Id",
+                    textInputAction: TextInputAction.done,
+                    textInputType: TextInputType.emailAddress,
+                  ),
+                  SizedBox(height: 50.v),
+                  CustomElevatedButton(
+                    height: 45.v,
+                    width: 221.h,
+                    text: "Save changes",
+                    alignment: Alignment.center,
+                  ),
+                  SizedBox(height: 5.v),
+                ],
               ),
             ),
+          ),
+        ),
       ),
     );
   }
