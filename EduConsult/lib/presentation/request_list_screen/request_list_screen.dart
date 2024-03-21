@@ -70,8 +70,12 @@ class RequestListScreen extends StatelessWidget {
   Widget _buildBottomBar(BuildContext context) {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {
-        Navigator.pushNamed(
-            navigatorKey.currentContext!, getCurrentRoute(type));
+        final currentRoute = getCurrentRoute(type);
+        if (currentRoute == AppRoutes.homeScreenConsultantScreen) {
+          Navigator.pop(context);
+        } else {
+          Navigator.pushReplacementNamed(context, getCurrentRoute(type));
+        }
       },
     );
   }
@@ -80,13 +84,15 @@ class RequestListScreen extends StatelessWidget {
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
-        return AppRoutes.consulteeChatListPage;
+        return AppRoutes.homeScreenConsultantScreen;
       case BottomBarEnum.Requests:
-        return "/";
+        return AppRoutes.requestListScreen;
       case BottomBarEnum.Chat:
-        return "/";
+        return AppRoutes.consultantChatListContainerScreen;
+      case BottomBarEnum.Profile:
+        return AppRoutes.consultantProfileScreen;
       default:
-        return "/";
+        return '/';
     }
   }
 
