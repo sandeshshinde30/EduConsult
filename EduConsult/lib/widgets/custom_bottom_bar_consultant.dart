@@ -15,7 +15,7 @@ class CustomBottomBar extends StatefulWidget {
 class CustomBottomBarState extends State<CustomBottomBar> {
   int selectedIndex = 0;
 
-  List<String> NavString = ['/home_screen_consultee_screen','/college_list_screen','/consultee_chat_list_container_screen','/consultee_profile_container_screen'];
+  // List<String> NavString = ['/home_screen_consultee_screen','/college_list_screen','/consultee_chat_list_container_screen','/consultee_profile_container_screen'];
 
   List<BottomMenuModel> bottomMenuList = [
     BottomMenuModel(
@@ -121,7 +121,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
           selectedIndex = index;
           widget.onChanged?.call(bottomMenuList[index].type);
           setState(() {
-            Navigator.pushNamed(context,NavString[selectedIndex]);
+            // Navigator.pushNamed(context,NavString[selectedIndex]);
           });
         },
       ),

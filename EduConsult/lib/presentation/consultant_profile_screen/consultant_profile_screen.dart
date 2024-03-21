@@ -2,7 +2,7 @@ import 'package:educonsult/presentation/consultant_chat_list_page/consultant_cha
 import 'package:educonsult/widgets/custom_text_form_field.dart';
 import 'package:educonsult/widgets/custom_drop_down.dart';
 import 'package:educonsult/widgets/custom_elevated_button.dart';
-import 'package:educonsult/widgets/custom_bottom_bar.dart';
+import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
@@ -194,8 +194,12 @@ class ConsultantProfileScreen extends StatelessWidget {
   Widget _buildBottomBar(BuildContext context) {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {
-        Navigator.pushNamed(
-            navigatorKey.currentContext!, getCurrentRoute(type));
+        final currentRoute = getCurrentRoute(type);
+        if (currentRoute == AppRoutes.homeScreenConsultantScreen) {
+          Navigator.pop(context);
+        } else {
+          Navigator.pushReplacementNamed(context, getCurrentRoute(type));
+        }
       },
     );
   }
@@ -204,13 +208,15 @@ class ConsultantProfileScreen extends StatelessWidget {
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
-        return AppRoutes.consultantChatListPage;
-      case BottomBarEnum.College:
-        return "/";
+        return AppRoutes.homeScreenConsultantScreen;
+      case BottomBarEnum.Requests:
+        return AppRoutes.requestListScreen;
       case BottomBarEnum.Chat:
-        return "/";
+        return AppRoutes.consultantChatListContainerScreen;
+      case BottomBarEnum.Profile:
+        return AppRoutes.consultantProfileScreen;
       default:
-        return "/";
+        return '/';
     }
   }
 
