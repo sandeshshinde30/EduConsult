@@ -11,17 +11,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     timing();
   }
+
   // After 2 seconds it will call intro screen
-  Future<void> timing() async
-  {
-    Timer(Duration(seconds: 3),()=>Navigator.pushReplacementNamed(context, '/login_register_screen'));
+  Future<void> timing() async {
+    Timer(
+        Duration(seconds: 3),
+        () =>
+            Navigator.pushReplacementNamed(context, '/login_register_screen'));
   }
 
   @override
@@ -52,4 +54,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
