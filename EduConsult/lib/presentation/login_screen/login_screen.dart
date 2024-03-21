@@ -1,18 +1,23 @@
+import 'dart:convert';
+
 import 'package:educonsult/widgets/custom_text_form_field.dart';
 import 'package:educonsult/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
+import 'package:http/http.dart' as http;
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key})
-      : super(
-    key: key,
-  );
 
+
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
-
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -28,10 +33,9 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // SizedBox(height: 10.v),
                 Text(
                   "Login Here",
-                  style: TextStyle(fontSize: 25.h,fontFamily: 'Popins',fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 25.h, fontFamily: 'Popins', fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 15.v),
                 Container(
@@ -57,15 +61,44 @@ class LoginScreen extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: Text(
                     "Forgot your password?",
-                    style: TextStyle(fontFamily: 'popins',fontSize: 14.h,color: Color(0xFF169BD7)),
+                    style: TextStyle(fontFamily: 'popins', fontSize: 14.h, color: Color(0xFF169BD7)),
                   ),
                 ),
                 SizedBox(height: 35.v),
                 CustomElevatedButton(
-                  onPressed: (){Navigator.pushNamed(context, '/home_screen_consultee_screen');},
+                  onPressed: () {
+                    // Navigator.pushNamed(context, '/home_screen_consultee_screen');
+                    if(emailController.text.toString()=="" || passwordController.text.toString()=="")
+                      {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Error'),
+                                content: Text("Please enter username or password"),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: Text('OK'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
+                        );
+                      }
+                    else
+                      {
+                        print(emailController.text.toString());
+                        print(passwordController.text.toString());
+                        showDialog(context: context, builder: (context) => Center(child: CircularProgressIndicator(color: Color(0xFF169BD7),)));
+                        checkUserRegistered(context);
+                      }
+                  },
                   height: 50.v,
-                  width:  MediaQuery.of(context).size.width,
-                  buttonTextStyle: TextStyle(fontSize: 18.h,fontFamily: 'popins',color: Colors.white),
+                  width: MediaQuery.of(context).size.width,
+                  buttonTextStyle: TextStyle(fontSize: 18.h, fontFamily: 'popins', color: Colors.white),
                   text: "Sign in",
                 ),
                 SizedBox(height: 31.v),
@@ -74,10 +107,12 @@ class LoginScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(right: 0.h),
                     child: InkWell(
-                      onTap: (){Navigator.pushNamed(context, '/registration_screen');},
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, '/registration_screen');
+                      },
                       child: Text(
                         "Create new account",
-                        style: TextStyle(fontFamily: 'popins',fontSize: 15.h,color: Color(0xFF172452)),
+                        style: TextStyle(fontFamily: 'popins', fontSize: 15.h, color: Color(0xFF172452)),
                       ),
                     ),
                   ),
@@ -139,7 +174,6 @@ class LoginScreen extends StatelessWidget {
                         child: Stack(
                           alignment: Alignment.bottomLeft,
                           children: [
-
                             CustomImageView(
                               imagePath: ImageConstant.googleIcon,
                               height: 25.adaptSize,
@@ -180,15 +214,14 @@ class LoginScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildSeventeen(BuildContext context) {
-    return
-      CustomTextFormField(
-        autofocus: false,
-        controller: passwordController,
-        hintText: "Email",
-        textStyle: theme.textTheme.titleSmall,
-        hintStyle: theme.textTheme.titleMedium,
-        textInputType: TextInputType.visiblePassword,
-      );
+    return CustomTextFormField(
+      autofocus: false,
+      controller: emailController,
+      hintText: "Email",
+      textStyle: theme.textTheme.titleSmall,
+      hintStyle: theme.textTheme.titleMedium,
+      textInputType: TextInputType.visiblePassword,
+    );
   }
 
   Widget _buildSeventeen1(BuildContext context) {
@@ -200,4 +233,55 @@ class LoginScreen extends StatelessWidget {
       obscureText: true,
     );
   }
+
+
+// Login API Calling function
+  Future checkUserRegistered(BuildContext context) async {
+    try {
+      var url = Uri.parse("http://192.168.52.145/EduConsult_API/login.php");
+
+      var response = await http.post(url, body: {
+        'Username': emailController.text.toString(),
+        'Password': passwordController.text.toString()
+      });
+
+      Map Data;
+      if (response.body.isNotEmpty) {
+        Data = jsonDecode(response.body);
+
+        // Data = "false";
+        if (Data['result'] == "true") {
+          Navigator.of(context).pop();
+          if(Data['designation'] == "consultee") Navigator.pushReplacementNamed(context, '/home_screen_consultee_screen',arguments: Data['name'] );
+          else Navigator.pushReplacementNamed(context, '/home_screen_consultant_screen',arguments: Data['name']);
+        }
+        else {
+          Navigator.of(context).pop();
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Error'),
+                  content: Text("Invalid Login",),
+                  actions: <Widget>[
+                    TextButton(
+                      child: Text('OK'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              }
+          );
+        }
+      }
+    }
+    catch(e) {
+      Navigator.of(context).pop();
+      print("Login Error");
+      print(e);
+    }
+  }
 }
+

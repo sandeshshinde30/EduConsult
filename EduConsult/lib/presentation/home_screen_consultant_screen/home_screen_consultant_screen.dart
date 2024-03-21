@@ -14,6 +14,8 @@ class HomeScreenConsultantScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Object? data = ModalRoute.of(context)?.settings.arguments;
+    String userName = data.toString();
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -22,7 +24,7 @@ class HomeScreenConsultantScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTwentySix(context),
+              _buildTwentySix(context,userName),
               SizedBox(height: 30.v),
               Container(
                 width: 350.h,
@@ -98,7 +100,7 @@ class HomeScreenConsultantScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildTwentySix(BuildContext context) {
+  Widget _buildTwentySix(BuildContext context,String userName) {
     return Align(
       alignment: Alignment.center,
       child: Padding(
@@ -131,7 +133,7 @@ class HomeScreenConsultantScreen extends StatelessWidget {
                     style: CustomTextStyles.titleLargeBluegray40001,
                   ),
                   Text(
-                    "Consultant!  👋 ",
+                    "$userName!  👋 ",
                     style: CustomTextStyles.titleLargeBluegray900,
                   ),
                 ],

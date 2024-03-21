@@ -14,6 +14,8 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Object? data = ModalRoute.of(context)?.settings.arguments;
+    String userName = data.toString();
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -22,7 +24,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTwentySix(context),
+              _buildTwentySix(context,userName),
               SizedBox(height: 30.v),
               Container(
                 width: 350.h,
@@ -100,7 +102,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildTwentySix(BuildContext context) {
+  Widget _buildTwentySix(BuildContext context,String userName) {
     return Align(
       alignment: Alignment.center,
       child: Padding(
@@ -134,7 +136,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                     style: CustomTextStyles.titleLargeBluegray40001,
                   ),
                   Text(
-                    "Consultee!  👋 ",
+                    "$userName!  👋 ",
                     style: CustomTextStyles.titleLargeBluegray900,
                   ),
                 ],
@@ -212,7 +214,12 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
       onChanged: (BottomBarEnum type) {
         // final currentContext = navigatorKey.currentContext;
         // if (currentContext != null) {
+        final currentRoute = getCurrentRoute(type);
+        if (currentRoute == AppRoutes.homeScreenConsulteeScreen) {
+          Navigator.pushReplacementNamed(context, currentRoute);
+        } else {
           Navigator.pushNamed(context, getCurrentRoute(type));
+        }
         // }
         // else
         //   {

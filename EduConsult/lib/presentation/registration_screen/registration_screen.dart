@@ -64,7 +64,7 @@ class RegistrationScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/login_screen');
+                      Navigator.pushReplacementNamed(context, '/login_screen');
                     },
                     child: Text(
                       "Already have an account",
@@ -229,7 +229,7 @@ class RegistrationScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildSignUp(BuildContext context) {
     return CustomElevatedButton(
-      onPressed: (){Navigator.pushNamed(context, '/home_screen_consultee_screen');},
+      onPressed: (){Navigator.pushReplacementNamed(context, '/home_screen_consultee_screen');},
       height: 50.v,
       text: "Sign up",
     );

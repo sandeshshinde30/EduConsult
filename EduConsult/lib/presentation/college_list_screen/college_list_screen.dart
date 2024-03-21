@@ -67,7 +67,12 @@ class CollegeListScreen extends StatelessWidget {
       onChanged: (BottomBarEnum type) {
         // final currentContext = navigatorKey.currentContext;
         // if (currentContext != null) {
-        Navigator.pushNamed(context, getCurrentRoute(type));
+        final currentRoute = getCurrentRoute(type);
+        if (currentRoute == AppRoutes.homeScreenConsulteeScreen) {
+          Navigator.pop(context);
+        } else {
+          Navigator.pushReplacementNamed(context, getCurrentRoute(type));
+        }
         // }
         // else
         //   {

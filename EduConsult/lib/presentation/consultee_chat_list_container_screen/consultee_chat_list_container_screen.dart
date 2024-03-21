@@ -28,7 +28,12 @@ class ConsulteeChatListContainerScreen extends StatelessWidget {
       onChanged: (BottomBarEnum type) {
         // final currentContext = navigatorKey.currentContext;
         // if (currentContext != null) {
-        Navigator.pushNamed(context, getCurrentRoute(type));
+        final currentRoute = getCurrentRoute(type);
+        if (currentRoute == AppRoutes.homeScreenConsulteeScreen) {
+          Navigator.pop(context);
+        } else {
+          Navigator.pushReplacementNamed(context, getCurrentRoute(type));
+        }
         // }
         // else
         //   {
@@ -50,7 +55,7 @@ class ConsulteeChatListContainerScreen extends StatelessWidget {
       case BottomBarEnum.Profile:
         return AppRoutes.consulteeProfileContainerScreen;
       default:
-        return '/';
+        return '/chat_screen';
     }
   }
 
