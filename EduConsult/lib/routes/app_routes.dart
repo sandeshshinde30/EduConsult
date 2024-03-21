@@ -27,7 +27,6 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
-
   static const String chatScreen = '/chat_screen';
 
   static const String consulteeProfilePage = '/consultee_profile_page';
@@ -62,8 +61,6 @@ class AppRoutes {
   static const String homeScreenConsultantScreen =
       '/home_screen_consultant_screen';
 
-
-
   static Map<String, WidgetBuilder> routes = {
     splashScreen: (context) => SplashScreen(),
     loginRegisterScreen: (context) => LoginRegisterScreen(),
@@ -71,18 +68,18 @@ class AppRoutes {
     registrationScreen: (context) => RegistrationScreen(),
     appNavigationScreen: (context) => AppNavigationScreen(),
     chatScreen: (context) => ChatScreen(),
-    consulteeProfileContainerScreen: (context) => ConsulteeProfileContainerScreen(),
+    consulteeProfileContainerScreen: (context) =>
+        ConsulteeProfileContainerScreen(),
     notificationScreen: (context) => NotificationScreen(),
     homeScreenConsulteeScreen: (context) => HomeScreenConsulteeScreen(),
-    consulteeChatListContainerScreen: (context) => ConsulteeChatListContainerScreen(),
+    consulteeChatListContainerScreen: (context) =>
+        ConsulteeChatListContainerScreen(),
     collegeListScreen: (context) => CollegeListScreen(),
     collegeConsultantListScreen: (context) => CollegeConsultantListScreen(),
     requestListScreen: (context) => RequestListScreen(),
-    appNavigationScreen: (context) => AppNavigationScreen(),
-    consultantChatListContainerScreen: (context) => ConsultantChatListContainerScreen(),
+    consultantChatListContainerScreen: (context) =>
+        ConsultantChatListContainerScreen(),
     consultantProfileScreen: (context) => ConsultantProfileScreen(),
     homeScreenConsultantScreen: (context) => HomeScreenConsultantScreen(),
-    chatScreen: (context) => ChatScreen(),
-    appNavigationScreen: (context) => AppNavigationScreen()
   };
 }
