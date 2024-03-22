@@ -16,7 +16,6 @@ class HomeScreenConsultantScreen extends StatefulWidget {
   @override
   _HomeScreenConsultantScreenState createState() =>
       _HomeScreenConsultantScreenState();
-
 }
 
 class _HomeScreenConsultantScreenState
@@ -24,7 +23,7 @@ class _HomeScreenConsultantScreenState
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   late SharedPreferences prefCheckLogin;
-  var consultant_name = "";
+  var consultant_name;
   late List<dynamic> data;
 
   @override
@@ -34,41 +33,12 @@ class _HomeScreenConsultantScreenState
   }
 
   Future<void> initializePreferences() async {
-    prefCheckLogin  = await SharedPreferences.getInstance();
-    consultant_name = prefCheckLogin.getString("name")!;
-    if(consultant_name!=Null)
-      {
-        fetchRequest(context);
-      }
-  }
-
-  Future<void> fetchRequest(BuildContext context) async
-  {
-
-    try {
-      var url = Uri.parse("http://192.168.52.145/Educonsult_API/see_requests.php");
-
-      var response = await http.post(url, body: {
-        'ConsultantName': consultant_name, // Assuming '6007' is the hardcoded college ID
+    prefCheckLogin = await SharedPreferences.getInstance();
+    String? name = prefCheckLogin.getString("name");
+    if (name != null) {
+      setState(() {
+        consultant_name = name;
       });
-
-
-      if (response.body.isNotEmpty) {
-        data = jsonDecode(response.body);
-
-        if(data != Null)
-        {
-          print(data);
-          // Navigator.pushNamed(context,'/college_consultant_list_screen',arguments: data);
-        }
-        else
-        {
-          print("Problem");
-        }
-      }
-    } catch (e) {
-      print("Fetch Consultants Error: $e");
-      // Handle error appropriately
     }
   }
 
@@ -274,8 +244,8 @@ class _HomeScreenConsultantScreenState
         if (currentRoute == AppRoutes.homeScreenConsultantScreen) {
           Navigator.pushReplacementNamed(context, currentRoute);
         }
-        else if(currentRoute == AppRoutes.requestListScreen) {
-          Navigator.pushNamed(context, getCurrentRoute(type),arguments: data);
+        else if(currentRoute == AppRoutes.request_loader) {
+          Navigator.pushReplacementNamed(context, currentRoute);
         }
         else {
           Navigator.pushNamed(context, getCurrentRoute(type));
@@ -296,7 +266,7 @@ class _HomeScreenConsultantScreenState
       case BottomBarEnum.Home:
         return AppRoutes.homeScreenConsultantScreen;
       case BottomBarEnum.Requests:
-        return AppRoutes.requestListScreen;
+        return AppRoutes.request_loader;
       case BottomBarEnum.Chat:
         return AppRoutes.consultantChatListContainerScreen;
       case BottomBarEnum.Profile:

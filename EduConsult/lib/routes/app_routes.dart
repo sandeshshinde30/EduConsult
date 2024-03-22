@@ -10,6 +10,7 @@ import '../presentation/home_screen_consultant_screen/home_screen_consultant_scr
 import '../presentation/home_screen_consultee_screen/home_screen_consultee_screen.dart';
 import '../presentation/notification_screen/notification_screen.dart';
 import '../presentation/request_list_screen/request_list_screen.dart';
+import '../presentation/request_list_screen/request_loder.dart';
 import '../presentation/splash_screen/splash_screen.dart';
 import '../presentation/login_register_screen/login_register_screen.dart';
 import '../presentation/login_screen/login_screen.dart';
@@ -61,6 +62,9 @@ class AppRoutes {
   static const String homeScreenConsultantScreen =
       '/home_screen_consultant_screen';
 
+  static const String request_loader =
+      '/request_loader';
+
   static Map<String, WidgetBuilder> routes = {
     splashScreen: (context) => SplashScreen(),
     loginRegisterScreen: (context) => LoginRegisterScreen(),
@@ -81,5 +85,6 @@ class AppRoutes {
         ConsultantChatListContainerScreen(),
     consultantProfileScreen: (context) => ConsultantProfileScreen(),
     homeScreenConsultantScreen: (context) => HomeScreenConsultantScreen(),
+    request_loader : (context) => RequestLoader(),
   };
 }

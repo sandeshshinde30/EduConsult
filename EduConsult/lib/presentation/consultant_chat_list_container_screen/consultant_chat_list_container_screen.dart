@@ -43,7 +43,7 @@ class ConsultantChatListContainerScreen extends StatelessWidget {
       case BottomBarEnum.Home:
         return AppRoutes.homeScreenConsultantScreen;
       case BottomBarEnum.Requests:
-        return AppRoutes.requestListScreen;
+        return AppRoutes.request_loader;
       case BottomBarEnum.Chat:
         return AppRoutes.consultantChatListContainerScreen;
       case BottomBarEnum.Profile:

@@ -1,17 +1,26 @@
+import 'dart:convert';
+
 import 'package:educonsult/presentation/consultee_chat_list_page/consultee_chat_list_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'widgets/requestlist_item_widget.dart';
 import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
+import 'package:http/http.dart' as http;
 
-class RequestListScreen extends StatelessWidget {
-  RequestListScreen({Key? key})
-      : super(
-          key: key,
-        );
+
+class RequestListScreen extends StatefulWidget {
+  RequestListScreen({Key? key}) : super(key: key);
+
+  @override
+  _RequestListScreenState createState() => _RequestListScreenState();
+}
+
+class _RequestListScreenState extends State<RequestListScreen> {
+
+
 
   late List<dynamic>? data;
-
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
@@ -63,9 +72,9 @@ class RequestListScreen extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           shrinkWrap: true,
           separatorBuilder: (
-            context,
-            index,
-          ) {
+              context,
+              index,
+              ) {
             return SizedBox(
               height: 20.v,
             );
@@ -88,7 +97,7 @@ class RequestListScreen extends StatelessWidget {
       onChanged: (BottomBarEnum type) {
         final currentRoute = getCurrentRoute(type);
         if (currentRoute == AppRoutes.homeScreenConsultantScreen) {
-          Navigator.pop(context);
+          Navigator.pushReplacementNamed(context,'/home_screen_consultant_screen');
         } else {
           Navigator.pushReplacementNamed(context, getCurrentRoute(type));
         }
@@ -102,7 +111,7 @@ class RequestListScreen extends StatelessWidget {
       case BottomBarEnum.Home:
         return AppRoutes.homeScreenConsultantScreen;
       case BottomBarEnum.Requests:
-        return AppRoutes.requestListScreen;
+        return AppRoutes.request_loader;
       case BottomBarEnum.Chat:
         return AppRoutes.consultantChatListContainerScreen;
       case BottomBarEnum.Profile:
@@ -112,13 +121,13 @@ class RequestListScreen extends StatelessWidget {
     }
   }
 
-  ///Handling page based on route
-  Widget getCurrentPage(String currentRoute) {
-    switch (currentRoute) {
-      case AppRoutes.consulteeChatListPage:
-        return ConsulteeChatListPage();
-      default:
-        return DefaultWidget();
-    }
-  }
+  // ///Handling page based on route
+  // Widget getCurrentPage(String currentRoute) {
+  //   switch (currentRoute) {
+  //     case AppRoutes.consulteeChatListPage:
+  //       return ConsulteeChatListPage();
+  //     default:
+  //       return DefaultWidget();
+  //   }
+  // }
 }

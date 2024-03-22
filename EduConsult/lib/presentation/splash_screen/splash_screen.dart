@@ -46,8 +46,8 @@ class _SplashScreenState extends State<SplashScreen> {
     else
     {
       print(name);
-      if(designation == "consultee") Timer(Duration(seconds:2),()=>Navigator.pushNamed(context,'/home_screen_consultee_screen'));
-      else Timer(Duration(seconds:2),()=>Navigator.pushNamed(context,'/home_screen_consultant_screen'));
+      if(designation == "consultee") Timer(Duration(seconds:2),()=>Navigator.pushReplacementNamed(context,'/home_screen_consultee_screen'));
+      else Timer(Duration(seconds:2),()=>Navigator.pushReplacementNamed(context,'/home_screen_consultant_screen'));
     }
   }
 
