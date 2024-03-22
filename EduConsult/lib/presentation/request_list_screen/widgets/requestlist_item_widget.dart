@@ -2,15 +2,28 @@ import 'package:educonsult/widgets/custom_outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
-// ignore: must_be_immutable
-class RequestlistItemWidget extends StatelessWidget {
-  const RequestlistItemWidget({Key? key})
-      : super(
-          key: key,
-        );
+class RequestlistItemWidget extends StatefulWidget {
+  final int index;
+  final List? data;
+
+  const RequestlistItemWidget({Key? key, required this.index, this.data})
+      : super(key: key);
 
   @override
+  _RequestlistItemWidgetState createState() => _RequestlistItemWidgetState();
+}
+
+class _RequestlistItemWidgetState extends State<RequestlistItemWidget> {
+  @override
   Widget build(BuildContext context) {
+    if (widget.data == null ||
+        widget.data!.isEmpty ||
+        widget.index < 0 ||
+        widget.index >= widget.data!.length) {
+      return SizedBox(); // Return an empty SizedBox if data is null, empty, or index is out of bounds
+    }
+
+    String consulteeName = widget.data![widget.index]['consulteeName'] ?? '';
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 26.h,
@@ -45,8 +58,9 @@ class RequestlistItemWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Esther Howard",
+                      SizedBox(height: 15,),
+                       Text(
+                        '$consulteeName',
                         style: TextStyle(
                           color: Color.fromRGBO(17, 24, 52, 1),
                           fontSize: 16,
@@ -54,13 +68,6 @@ class RequestlistItemWidget extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 3.v),
-                      const Text(
-                        "College Of Engineering Pune",
-                        style: TextStyle(
-                          color: Color.fromRGBO(54, 54, 54, 1),
-                          fontSize: 12,
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -86,7 +93,7 @@ class RequestlistItemWidget extends StatelessWidget {
   Widget _buildReject(BuildContext context) {
     return CustomOutlinedButton(
       width: 123.h,
-      text: "Reject",
+      text: "Accept",
       buttonStyle: const ButtonStyle(
         backgroundColor:
             MaterialStatePropertyAll(Color.fromRGBO(16, 26, 78, 1)),
@@ -98,9 +105,8 @@ class RequestlistItemWidget extends StatelessWidget {
   Widget _buildAccept(BuildContext context) {
     return CustomOutlinedButton(
       width: 123.h,
-      text: "Accept",
+      text: "Reject",
       margin: EdgeInsets.only(left: 10.h),
-      buttonStyle: CustomButtonStyles.outlineIndigoTL18,
       buttonTextStyle: theme.textTheme.titleSmall!,
     );
   }

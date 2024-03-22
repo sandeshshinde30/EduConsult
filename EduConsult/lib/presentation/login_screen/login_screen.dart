@@ -5,6 +5,7 @@ import 'package:educonsult/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -13,12 +14,24 @@ class LoginScreen extends StatefulWidget {
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
+
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    initializePreferences();
+  }
+
+  Future<void> initializePreferences() async {
+    prefs  = await SharedPreferences.getInstance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -252,6 +265,13 @@ class _LoginScreenState extends State<LoginScreen> {
         // Data = "false";
         if (Data['result'] == "true") {
           Navigator.of(context).pop();
+
+          // If login success then storing name
+
+          prefs.setString("name", Data['name']);
+          prefs.setString("designation", Data['designation']);
+          prefs.setBool("login", true);
+
           if(Data['designation'] == "consultee") Navigator.pushReplacementNamed(context, '/home_screen_consultee_screen',arguments: Data['name'] );
           else Navigator.pushReplacementNamed(context, '/home_screen_consultant_screen',arguments: Data['name']);
         }

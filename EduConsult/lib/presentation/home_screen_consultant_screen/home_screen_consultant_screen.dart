@@ -1,16 +1,76 @@
+import 'dart:convert';
+
 import 'package:educonsult/presentation/consultee_profile_page/consultee_profile_page.dart';
 import 'package:educonsult/widgets/custom_elevated_button.dart';
 import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-class HomeScreenConsultantScreen extends StatelessWidget {
-  HomeScreenConsultantScreen({Key? key})
-      : super(
-          key: key,
-        );
+class HomeScreenConsultantScreen extends StatefulWidget {
+  HomeScreenConsultantScreen({Key? key}) : super(key: key);
 
+
+
+  @override
+  _HomeScreenConsultantScreenState createState() =>
+      _HomeScreenConsultantScreenState();
+
+}
+
+class _HomeScreenConsultantScreenState
+    extends State<HomeScreenConsultantScreen> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
+  late SharedPreferences prefCheckLogin;
+  var consultant_name = "";
+  late List<dynamic> data;
+
+  @override
+  void initState() {
+    super.initState();
+    initializePreferences();
+  }
+
+  Future<void> initializePreferences() async {
+    prefCheckLogin  = await SharedPreferences.getInstance();
+    consultant_name = prefCheckLogin.getString("name")!;
+    if(consultant_name!=Null)
+      {
+        fetchRequest(context);
+      }
+  }
+
+  Future<void> fetchRequest(BuildContext context) async
+  {
+
+    try {
+      var url = Uri.parse("http://192.168.52.145/Educonsult_API/see_requests.php");
+
+      var response = await http.post(url, body: {
+        'ConsultantName': consultant_name, // Assuming '6007' is the hardcoded college ID
+      });
+
+
+      if (response.body.isNotEmpty) {
+        data = jsonDecode(response.body);
+
+        if(data != Null)
+        {
+          print(data);
+          // Navigator.pushNamed(context,'/college_consultant_list_screen',arguments: data);
+        }
+        else
+        {
+          print("Problem");
+        }
+      }
+    } catch (e) {
+      print("Fetch Consultants Error: $e");
+      // Handle error appropriately
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +193,7 @@ class HomeScreenConsultantScreen extends StatelessWidget {
                     style: CustomTextStyles.titleLargeBluegray40001,
                   ),
                   Text(
-                    "$userName!  👋 ",
+                    "$consultant_name!  👋 ",
                     style: CustomTextStyles.titleLargeBluegray900,
                   ),
                 ],
@@ -213,9 +273,14 @@ class HomeScreenConsultantScreen extends StatelessWidget {
         final currentRoute = getCurrentRoute(type);
         if (currentRoute == AppRoutes.homeScreenConsultantScreen) {
           Navigator.pushReplacementNamed(context, currentRoute);
-        } else {
+        }
+        else if(currentRoute == AppRoutes.requestListScreen) {
+          Navigator.pushNamed(context, getCurrentRoute(type),arguments: data);
+        }
+        else {
           Navigator.pushNamed(context, getCurrentRoute(type));
         }
+
         // }
         // else
         //   {
@@ -250,4 +315,6 @@ class HomeScreenConsultantScreen extends StatelessWidget {
         return DefaultWidget();
     }
   }
+
+
 }

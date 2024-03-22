@@ -10,10 +10,23 @@ class RequestListScreen extends StatelessWidget {
           key: key,
         );
 
+  late List<dynamic>? data;
+
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)?.settings.arguments as List?;
+    if (data == null || data!.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Error'),
+        ),
+        body: Center(
+          child: Text('No data available'),
+        ),
+      );
+    }
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -57,9 +70,12 @@ class RequestListScreen extends StatelessWidget {
               height: 20.v,
             );
           },
-          itemCount: 2,
+          itemCount: data!.length,
           itemBuilder: (context, index) {
-            return RequestlistItemWidget();
+            return RequestlistItemWidget(
+              index: index, // Pass index as named argument
+              data: data,
+            );
           },
         ),
       ),

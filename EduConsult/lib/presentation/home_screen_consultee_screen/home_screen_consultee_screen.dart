@@ -3,19 +3,40 @@ import 'package:educonsult/widgets/custom_elevated_button.dart';
 import 'package:educonsult/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeScreenConsulteeScreen extends StatelessWidget {
-  HomeScreenConsulteeScreen({Key? key})
-      : super(
-          key: key,
-        );
+class HomeScreenConsulteeScreen extends StatefulWidget {
+  const HomeScreenConsulteeScreen({Key? key}) : super(key: key);
 
+  @override
+  _HomeScreenConsulteeScreenState createState() => _HomeScreenConsulteeScreenState();
+}
+
+class _HomeScreenConsulteeScreenState extends State<HomeScreenConsulteeScreen> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
+  late SharedPreferences prefCheckLogin;
+  var name = "";
+
+  @override
+  void initState() {
+    super.initState();
+    initializePreferences();
+  }
+
+  Future<void> initializePreferences() async {
+    prefCheckLogin  = await SharedPreferences.getInstance();
+    name = prefCheckLogin.getString("name")!;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Object? data = ModalRoute.of(context)?.settings.arguments;
-    String userName = data.toString();
+    // final Object? data = ModalRoute
+    //     .of(context)
+    //     ?.settings
+    //     .arguments;
+    // String userName = data.toString();
+
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -24,7 +45,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTwentySix(context,userName),
+              _buildTwentySix(context, name),
               SizedBox(height: 30.v),
               Container(
                 width: 350.h,
@@ -73,21 +94,26 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     CustomElevatedButton(
-                      onPressed: (){Navigator.pushNamed(context,'/college_list_screen');},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/college_list_screen');
+                      },
                       width: 134.h,
                       text: "Colleges",
                       buttonStyle: CustomButtonStyles.fillLightBlueE,
                       buttonTextStyle:
-                          CustomTextStyles.titleMediumInterGray20002,
+                      CustomTextStyles.titleMediumInterGray20002,
                     ),
                     CustomElevatedButton(
-                      onPressed: (){Navigator.pushNamed(context,'/consultee_chat_list_container_screen');},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, '/consultee_chat_list_container_screen');
+                      },
                       width: 134.h,
                       text: "Chats",
                       margin: EdgeInsets.only(left: 8.h),
                       buttonStyle: CustomButtonStyles.fillOnPrimaryContainer,
                       buttonTextStyle:
-                          CustomTextStyles.titleMediumInterBluegray900,
+                      CustomTextStyles.titleMediumInterBluegray900,
                     ),
                   ],
                 ),
@@ -102,7 +128,7 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildTwentySix(BuildContext context,String userName) {
+  Widget _buildTwentySix(BuildContext context, String userName) {
     return Align(
       alignment: Alignment.center,
       child: Padding(
@@ -114,7 +140,10 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomImageView(
-              onTap: (){Navigator.pushNamed(context, '/consultee_profile_container_screen');},
+              onTap: () {
+                Navigator.pushNamed(
+                    context, '/consultee_profile_container_screen');
+              },
               imagePath: ImageConstant.imgRectangle262x63,
               height: 62.v,
               width: 63.h,
@@ -144,7 +173,9 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
             ),
             Spacer(),
             CustomImageView(
-              onTap: (){Navigator.pushNamed(context,'/notification_screen');},
+              onTap: () {
+                Navigator.pushNamed(context, '/notification_screen');
+              },
               imagePath: ImageConstant.imgNotificationsUnread,
               height: 28.v,
               width: 27.h,
@@ -242,16 +273,6 @@ class HomeScreenConsulteeScreen extends StatelessWidget {
         return AppRoutes.consulteeProfileContainerScreen;
       default:
         return '/';
-    }
-  }
-
-  ///Handling page based on route
-  Widget getCurrentPage(String currentRoute) {
-    switch (currentRoute) {
-      case AppRoutes.consulteeProfilePage:
-        return ConsulteeProfilePage();
-      default:
-        return DefaultWidget();
     }
   }
 }
