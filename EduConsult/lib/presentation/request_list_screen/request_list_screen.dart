@@ -1,13 +1,9 @@
-import 'dart:convert';
+import 'dart:async';
 
-import 'package:educonsult/presentation/consultee_chat_list_page/consultee_chat_list_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'widgets/requestlist_item_widget.dart';
-import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
 import 'package:flutter/material.dart';
+import 'package:educonsult/widgets/custom_bottom_bar_consultant.dart';
+import 'widgets/requestlist_item_widget.dart';
 import 'package:educonsult/core/app_export.dart';
-import 'package:http/http.dart' as http;
-
 
 class RequestListScreen extends StatefulWidget {
   RequestListScreen({Key? key}) : super(key: key);
@@ -17,9 +13,6 @@ class RequestListScreen extends StatefulWidget {
 }
 
 class _RequestListScreenState extends State<RequestListScreen> {
-
-
-
   late List<dynamic>? data;
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -27,43 +20,54 @@ class _RequestListScreenState extends State<RequestListScreen> {
   Widget build(BuildContext context) {
     data = ModalRoute.of(context)?.settings.arguments as List?;
     if (data == null || data!.isEmpty) {
+      // Timer(Duration(seconds:1),()=>Navigator.pushReplacementNamed(context,'/home_screen_consultant_screen'));
       return Scaffold(
         appBar: AppBar(
-          title: Text('Error'),
+          leading: InkWell(
+              onTap: (){Navigator.pushReplacementNamed(context,'/home_screen_consultant_screen');},
+              child: Icon(Icons.arrow_back)),
+          title: Text('Requests'),
         ),
         body: Center(
-          child: Text('No data available'),
+          child: Text("You don't have any request"),
         ),
       );
     }
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          width: double.maxFinite,
-          padding: EdgeInsets.symmetric(
-            horizontal: 15.h,
-            vertical: 43.v,
+    return WillPopScope(
+      onWillPop: () async {
+        // Navigate to the home route when the back button is pressed
+        Navigator.pushReplacementNamed(context, '/home_screen_consultant_screen');
+        return false; // Prevent default back navigation
+      },
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(
+              horizontal: 15.h,
+              vertical: 43.v,
+            ),
+            child: Column(
+              children: [
+                const Text(
+                  "Requests",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 17, 24, 52),
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 18.v),
+                _buildRequestlist(context),
+              ],
+            ),
           ),
-          child: Column(
-            children: [
-              const Text(
-                "Requests",
-                style: TextStyle(
-                    color: Color.fromARGB(255, 17, 24, 52),
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 18.v),
-              _buildRequestlist(context),
-            ],
-          ),
+          bottomNavigationBar: _buildBottomBar(context),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
       ),
     );
   }
 
-  /// Section Widget
+  // Section Widget
   Widget _buildRequestlist(BuildContext context) {
     return Expanded(
       child: Padding(
@@ -91,21 +95,21 @@ class _RequestListScreenState extends State<RequestListScreen> {
     );
   }
 
-  /// Section Widget
+  // Section Widget
   Widget _buildBottomBar(BuildContext context) {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {
         final currentRoute = getCurrentRoute(type);
         if (currentRoute == AppRoutes.homeScreenConsultantScreen) {
-          Navigator.pushReplacementNamed(context,'/home_screen_consultant_screen');
+          Navigator.pushReplacementNamed(context, '/home_screen_consultant_screen');
         } else {
-          Navigator.pushReplacementNamed(context, getCurrentRoute(type));
+          Navigator.pushReplacementNamed(context,'/home_screen_consultant_screen');
         }
       },
     );
   }
 
-  ///Handling route based on bottom click actions
+  // Handling route based on bottom click actions
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
@@ -120,14 +124,6 @@ class _RequestListScreenState extends State<RequestListScreen> {
         return '/';
     }
   }
-
-  // ///Handling page based on route
-  // Widget getCurrentPage(String currentRoute) {
-  //   switch (currentRoute) {
-  //     case AppRoutes.consulteeChatListPage:
-  //       return ConsulteeChatListPage();
-  //     default:
-  //       return DefaultWidget();
-  //   }
-  // }
 }
+
+

@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:educonsult/widgets/custom_outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+
 
 class RequestlistItemWidget extends StatefulWidget {
   final int index;
@@ -14,6 +19,22 @@ class RequestlistItemWidget extends StatefulWidget {
 }
 
 class _RequestlistItemWidgetState extends State<RequestlistItemWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+    initializePreferences();
+  }
+
+  late SharedPreferences prefCheckLogin;
+  var consultant_name;
+  late String consulteeName;
+
+  Future<void> initializePreferences() async {
+    prefCheckLogin  = await SharedPreferences.getInstance();
+    consultant_name = prefCheckLogin.getString("name")!;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.data == null ||
@@ -23,7 +44,7 @@ class _RequestlistItemWidgetState extends State<RequestlistItemWidget> {
       return SizedBox(); // Return an empty SizedBox if data is null, empty, or index is out of bounds
     }
 
-    String consulteeName = widget.data![widget.index]['consulteeName'] ?? '';
+    consulteeName = widget.data![widget.index]['consulteeName'] ?? '';
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 26.h,
@@ -98,6 +119,10 @@ class _RequestlistItemWidgetState extends State<RequestlistItemWidget> {
         backgroundColor:
             MaterialStatePropertyAll(Color.fromRGBO(16, 26, 78, 1)),
       ),
+
+      onPressed: () async {
+        await fetchRequest(context, "Accept");
+      },
     );
   }
 
@@ -108,6 +133,88 @@ class _RequestlistItemWidgetState extends State<RequestlistItemWidget> {
       text: "Reject",
       margin: EdgeInsets.only(left: 10.h),
       buttonTextStyle: theme.textTheme.titleSmall!,
+      onPressed: () async {
+        await fetchRequest(context, "Reject");
+      },
     );
   }
+
+
+// Accept and Reject Button click API calling function
+  Future<void> fetchRequest(BuildContext context,String status) async {
+    var data;
+    try {
+      var url = Uri.parse("http://192.168.52.145/Educonsult_API/accept_reject_request.php");
+
+      var response = await http.post(url, body: {
+        'ConsultantName': consultant_name,
+        'ConsulteeName': consulteeName,
+        'Status' : status
+      });
+
+      if (response.body.isNotEmpty) {
+        data = jsonDecode(response.body);
+
+        print(data);
+
+        var title = "";
+        var content = "";
+
+        if (data == "true") {
+          if(status == "Accept")
+            {
+              title = "Request Accepted";
+              content = "The request has been successfully accepted.";
+            }
+          else
+            {
+              title = "Request Rejected";
+              content = "The request has been successfully rejected.";
+            }
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('$title'),
+                content: Text('$content'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.pushReplacementNamed(context,'/request_loader');// Close the dialog
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Request Error'),
+                content: Text('There was a problem accepting the request.'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.pushReplacementNamed(context,'/request_loader');// Close the dialog
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      }
+    } catch (e) {
+      print("Fetch Consultants Error: $e");
+      // Handle error appropriately
+    }
+  }
 }
+
+

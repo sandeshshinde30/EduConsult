@@ -29,11 +29,7 @@ class ConsulteeChatListContainerScreen extends StatelessWidget {
         // final currentContext = navigatorKey.currentContext;
         // if (currentContext != null) {
         final currentRoute = getCurrentRoute(type);
-        if (currentRoute == AppRoutes.homeScreenConsulteeScreen) {
-          Navigator.pop(context);
-        } else {
           Navigator.pushReplacementNamed(context, getCurrentRoute(type));
-        }
         // }
         // else
         //   {

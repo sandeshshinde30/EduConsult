@@ -46,7 +46,31 @@ class _HomeScreenConsultantScreenState
   Widget build(BuildContext context) {
     final Object? data = ModalRoute.of(context)?.settings.arguments;
     String userName = data.toString();
-    return SafeArea(
+    return WillPopScope(
+      onWillPop: () async {
+        // Show dialog and handle user choice
+        bool confirmExit = await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Exit Application'),
+              content: Text('Do you want to exit the application?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false), // No, do not exit
+                  child: Text('No'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(true), // Yes, exit
+                  child: Text('Yes'),
+                ),
+              ],
+            );
+          },
+        );
+        return confirmExit ?? false; // Return user choice or false (default action)
+      },
+      child:SafeArea(
       child: Scaffold(
         body: Container(
           width: double.maxFinite,
@@ -126,6 +150,7 @@ class _HomeScreenConsultantScreenState
         ),
         bottomNavigationBar: _buildBottomBar(context),
       ),
+      ),
     );
   }
 
@@ -141,12 +166,15 @@ class _HomeScreenConsultantScreenState
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomImageView(
-              imagePath: ImageConstant.imgRectangle262x63,
-              height: 62.v,
-              width: 63.h,
-              radius: BorderRadius.circular(
-                20.h,
+            InkWell(
+              onTap: (){Navigator.pushNamed(context,'/consultant_profile_screen');},
+              child: CustomImageView(
+                imagePath: ImageConstant.imgRectangle262x63,
+                height: 62.v,
+                width: 63.h,
+                radius: BorderRadius.circular(
+                  20.h,
+                ),
               ),
             ),
             Padding(
@@ -248,7 +276,7 @@ class _HomeScreenConsultantScreenState
           Navigator.pushReplacementNamed(context, currentRoute);
         }
         else {
-          Navigator.pushNamed(context, getCurrentRoute(type));
+          Navigator.pushReplacementNamed(context, getCurrentRoute(type));
         }
 
         // }
@@ -285,6 +313,4 @@ class _HomeScreenConsultantScreenState
         return DefaultWidget();
     }
   }
-
-
 }
