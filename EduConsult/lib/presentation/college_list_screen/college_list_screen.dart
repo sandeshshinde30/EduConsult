@@ -4,16 +4,35 @@ import 'package:educonsult/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
-class CollegeListScreen extends StatelessWidget {
-  CollegeListScreen({Key? key})
-      : super(
-          key: key,
-        );
+class CollegeListScreen extends StatefulWidget {
+  CollegeListScreen({Key? key}) : super(key: key);
 
+  @override
+  _CollegeListScreenState createState() => _CollegeListScreenState();
+}
+
+class _CollegeListScreenState extends State<CollegeListScreen> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
+  late List<dynamic>? data;
 
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)?.settings.arguments as List?;
+    if (data == null || data!.isEmpty) {
+      // Timer(Duration(seconds:1),()=>Navigator.pushReplacementNamed(context,'/home_screen_consultant_screen'));
+      return Scaffold(
+        appBar: AppBar(
+          leading: InkWell(
+              onTap: (){Navigator.pushReplacementNamed(context,'/home_screen_consultee_screen');},
+              child: Icon(Icons.arrow_back)),
+          title: Text('Colleges'),
+        ),
+        body: Center(
+          child: Text("Coming Soon..."),
+        ),
+      );
+    }
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -29,7 +48,11 @@ class CollegeListScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 106.h),
                 child: Text(
                   "Colleges",
-                  style: TextStyle(color: Color.fromARGB(255, 17, 24, 52),fontSize: 25,fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 17, 24, 52),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(height: 37.v),
@@ -48,16 +71,19 @@ class CollegeListScreen extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       separatorBuilder: (
-        context,
-        index,
-      ) {
+          context,
+          index,
+          ) {
         return SizedBox(
           height: 22.v,
         );
       },
-      itemCount: 1,
+      itemCount: data!.length,
       itemBuilder: (context, index) {
-        return CollegelistItemWidget();
+        return CollegelistItemWidget(
+          index: index, // Pass index as named argument
+          data: data,
+        );
       },
     );
   }
@@ -65,19 +91,12 @@ class CollegeListScreen extends StatelessWidget {
   Widget _buildBottomBar(BuildContext context) {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {
-        // final currentContext = navigatorKey.currentContext;
-        // if (currentContext != null) {
         final currentRoute = getCurrentRoute(type);
         if (currentRoute == AppRoutes.homeScreenConsulteeScreen) {
-          Navigator.pop(context);
+          Navigator.pushReplacementNamed(context,'/home_screen_consultee_screen');
         } else {
           Navigator.pushReplacementNamed(context, getCurrentRoute(type));
         }
-        // }
-        // else
-        //   {
-        //     print("Some Problem");
-        //   }
       },
     );
   }
@@ -88,23 +107,13 @@ class CollegeListScreen extends StatelessWidget {
       case BottomBarEnum.Home:
         return AppRoutes.homeScreenConsulteeScreen;
       case BottomBarEnum.College:
-        return AppRoutes.collegeListScreen;
+        return AppRoutes.college_list_loader;
       case BottomBarEnum.Chat:
         return AppRoutes.consulteeChatListContainerScreen;
       case BottomBarEnum.Profile:
         return AppRoutes.consulteeProfileContainerScreen;
       default:
         return '/';
-    }
-  }
-
-  ///Handling page based on route
-  Widget getCurrentPage(String currentRoute) {
-    switch (currentRoute) {
-      case AppRoutes.consulteeChatListPage:
-        return ConsulteeChatListPage();
-      default:
-        return DefaultWidget();
     }
   }
 }

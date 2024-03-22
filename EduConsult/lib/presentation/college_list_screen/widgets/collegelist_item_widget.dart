@@ -1,42 +1,42 @@
 import 'dart:convert';
 
+import 'package:educonsult/presentation/college_consultant_list_screen/college_consultant_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class CollegelistItemWidget extends StatefulWidget {
-  const CollegelistItemWidget({Key? key}) : super(key: key);
+class CollegelistItemWidget extends StatelessWidget {
+  final int index;
+  final List? data;
 
-  @override
-  _CollegelistItemWidgetState createState() => _CollegelistItemWidgetState();
-}
+  const CollegelistItemWidget({Key? key, required this.index, required this.data})
+      : super(key: key);
 
-class _CollegelistItemWidgetState extends State<CollegelistItemWidget> {
   @override
   Widget build(BuildContext context) {
-    String colleID = '6007';
+    String collegeName = data![index]['College'] ?? '';
+    String collegeID = data![index]['CollegeCode'] ?? '';
     return InkWell(
       onTap: () {
-        // Call your function to fetch consultants here
-        fetchConsultants(context);
+        fetchConsultants(context, collegeID);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 9),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: Color(0xFF169BD7),width: 2),
+          border: Border.all(color: Color(0xFF169BD7), width: 2),
           color: Colors.transparent,
         ),
         child: Row(
           children: [
-            _buildSixThousandSixHundredOne(context),
+            _buildCollegeID(context, collegeID),
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(left: 8),
                 child: Text(
-                  "Walchand College of Engineering, Sangli",
+                  collegeName,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black,fontSize: 13),
                 ),
               ),
             ),
@@ -46,8 +46,7 @@ class _CollegelistItemWidgetState extends State<CollegelistItemWidget> {
     );
   }
 
-  /// Section Widget
-  Widget _buildSixThousandSixHundredOne(BuildContext context) {
+  Widget _buildCollegeID(BuildContext context, String collegeID) {
     return Container(
       height: 50,
       width: 50,
@@ -57,7 +56,7 @@ class _CollegelistItemWidgetState extends State<CollegelistItemWidget> {
       ),
       child: Center(
         child: Text(
-          "6007",
+          collegeID,
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -65,23 +64,24 @@ class _CollegelistItemWidgetState extends State<CollegelistItemWidget> {
     );
   }
 
-  Future<void> fetchConsultants(BuildContext context) async {
+  Future<void> fetchConsultants(BuildContext context, String collegeID) async {
     try {
       var url = Uri.parse("http://192.168.52.145/Educonsult_API/fetch_consultants.php");
 
       var response = await http.post(url, body: {
-        'CollegeID': '6007', // Assuming '6007' is the hardcoded college ID
+        'CollegeID': collegeID,
       });
 
-
-      if (response.body.isNotEmpty) {
+      if (response.statusCode == 200) {
         List<dynamic> data = jsonDecode(response.body);
 
-        if(data != Null)
-          {
-            print(data);
-            Navigator.pushNamed(context,'/college_consultant_list_screen',arguments: data);
-          }
+        if (data.isNotEmpty) {
+          Navigator.pushNamed(context, '/college_consultant_list_screen', arguments: data);
+        } else {
+          print("No consultants found for this college.");
+        }
+      } else {
+        print("Failed to fetch consultants. Status code: ${response.statusCode}");
       }
     } catch (e) {
       print("Fetch Consultants Error: $e");

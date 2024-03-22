@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import '../presentation/chat_screen/chat_screen.dart';
 import '../presentation/college_consultant_list_screen/college_consultant_list_screen.dart';
+import '../presentation/college_list_screen/college_list_loader.dart';
 import '../presentation/college_list_screen/college_list_screen.dart';
 import '../presentation/consultant_chat_list_container_screen/consultant_chat_list_container_screen.dart';
 import '../presentation/consultant_profile_screen/consultant_profile_screen.dart';
@@ -65,6 +67,9 @@ class AppRoutes {
   static const String request_loader =
       '/request_loader';
 
+  static const String college_list_loader =
+      '/college_list_loader';
+
   static Map<String, WidgetBuilder> routes = {
     splashScreen: (context) => SplashScreen(),
     loginRegisterScreen: (context) => LoginRegisterScreen(),
@@ -86,5 +91,6 @@ class AppRoutes {
     consultantProfileScreen: (context) => ConsultantProfileScreen(),
     homeScreenConsultantScreen: (context) => HomeScreenConsultantScreen(),
     request_loader : (context) => RequestLoader(),
+    college_list_loader : (context) => College_list_loader(),
   };
 }
