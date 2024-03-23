@@ -65,4 +65,8 @@ class ImageConstant {
 
   static String imgNavRequests = '$imagePath/img_nav_requests.svg';
 
+  static String imgRefresh = '$imagePath/img_refresh.svg';
+
+  static String imgUserBlueGray900 = '$imagePath/img_user_blue_gray_900.svg';
+
 }

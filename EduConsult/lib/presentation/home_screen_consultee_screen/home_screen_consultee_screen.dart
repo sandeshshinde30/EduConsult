@@ -16,7 +16,7 @@ class _HomeScreenConsulteeScreenState extends State<HomeScreenConsulteeScreen> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   late SharedPreferences prefCheckLogin;
-  var name = "";
+  var name;
 
   @override
   void initState() {
@@ -26,7 +26,9 @@ class _HomeScreenConsulteeScreenState extends State<HomeScreenConsulteeScreen> {
 
   Future<void> initializePreferences() async {
     prefCheckLogin  = await SharedPreferences.getInstance();
-    name = prefCheckLogin.getString("name")!;
+    setState(() {
+      name = prefCheckLogin.getString("name")!;
+    });
   }
 
   @override

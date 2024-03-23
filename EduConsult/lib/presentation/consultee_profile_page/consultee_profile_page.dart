@@ -2,6 +2,7 @@ import 'package:educonsult/widgets/app_bar/custom_app_bar.dart';
 import 'package:educonsult/widgets/app_bar/appbar_subtitle.dart';
 import 'package:educonsult/widgets/custom_text_form_field.dart';
 import 'package:educonsult/widgets/custom_elevated_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
 
@@ -97,7 +98,30 @@ class ConsulteeProfilePage extends StatelessWidget {
                     text: "Save changes",
                     alignment: Alignment.center,
                   ),
-                  SizedBox(height: 5.v),
+                  SizedBox(height: 50.v),
+                  Center(
+                    child: SizedBox(
+                      height: 45,
+                      width: 220,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Handle logout logic
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                    
+                          // You can customize other properties such as padding, shape, etc. here
+                        ),
+                        child: Text(
+                          'Log Out',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),

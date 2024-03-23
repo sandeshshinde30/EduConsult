@@ -80,13 +80,14 @@ class _CollegeconsultantlistItemWidgetState
   }
 
   Widget _buildCONNECT(BuildContext context) {
+    String btnName = "CONNECT";
     return InkWell(
 
-        onTap: () {},
+        onTap: () { setState(() { btnName = "Remove"; }); },
         child: CustomElevatedButton(
           height: 17.v,
           width: 73.h,
-          text: "CONNECT",
+          text: "$btnName",
           buttonStyle: CustomButtonStyles.fillLightBlue,
           buttonTextStyle: CustomTextStyles.labelMediumPoppinsGray800,
           onPressed: () async {
@@ -94,32 +95,78 @@ class _CollegeconsultantlistItemWidgetState
             prefCheckLogin  = await SharedPreferences.getInstance();
             var consultee_name = prefCheckLogin.getString("name")!;
 
-            if(consultee_name!=Null)
-              {
-                //name
-                try {
-                  var url = Uri.parse("http://192.168.52.145/Educonsult_API/send_request.php");
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Are You Sure ?'),
+                  actions: <Widget>[
+                    TextButton(onPressed: (){
+                      Navigator.of(context).pop();
+                    },
+                      child:Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        Navigator.of(context).pop();
 
-                  var response = await http.post(url, body: {
-                    'consultant_name' : Name,
-                    'consultee_name' : consultee_name,
-                    'status' : "null"
-                  });
+                        if(consultee_name!=Null)
+                        {
+                          print(consultee_name);
+                          //name
+                          try {
+                            var url = Uri.parse("http://192.168.52.145/Educonsult_API/send_request.php");
 
-                  if (response.body.isNotEmpty) {
-                    String data = jsonDecode(response.body);
+                            var response = await http.post(url, body: {
+                              'consultant_name' : Name,
+                              'consultee_name' : consultee_name,
+                              'status' : "null"
+                            });
 
-                    if(data != Null)
-                    {
-                      print(data);
-                      // Navigator.pushNamed(context,'/college_consultant_list_screen',arguments: data);
-                    }
-                  }
-                } catch (e) {
-                  print("Fetch Consultants Error: $e");
-                  // Handle error appropriately
-                }
-              }
+                            if (response.body.isNotEmpty) {
+                              String data = jsonDecode(response.body);
+
+                              if(data != Null)
+                              {
+                                print(data);
+                                if(data == "true")
+                                  {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text('Connection Request Successfully sent'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text('OK'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                // Navigator.pushNamed(context,'/college_consultant_list_screen',arguments: data);
+                              }
+                            }
+
+                          } catch (e) {
+                            print("Fetch Consultants Error: $e");
+                            // Handle error appropriately
+                          }
+                        }
+                      },
+                      child: Text('Connect'),
+                    ),
+
+                  ],
+                );
+              },
+            );
+
+
           },
         ),
     );
