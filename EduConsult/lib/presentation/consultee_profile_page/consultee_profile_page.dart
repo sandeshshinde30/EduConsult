@@ -55,7 +55,7 @@ class ConsulteeProfilePage extends StatelessWidget {
                         alignment: Alignment.center,
                         children: [
                           CustomImageView(
-                            imagePath: ImageConstant.imgPro,
+                            imagePath: ImageConstant.imgEllipse12,
                             height: 100.adaptSize,
                             width: 100.adaptSize,
                             radius: BorderRadius.circular(
