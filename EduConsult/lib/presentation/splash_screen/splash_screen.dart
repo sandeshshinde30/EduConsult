@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     designation = prefCheckLogin.getString("designation");
 
 
-    if(loginOrNot == null)
+    if(loginOrNot == null || loginOrNot == "")
     {
       Timer(Duration(seconds:2),()=>Navigator.pushNamed(context,'/login_register_screen'));
 

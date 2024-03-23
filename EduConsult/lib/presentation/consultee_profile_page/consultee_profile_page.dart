@@ -1,23 +1,33 @@
-import 'package:educonsult/widgets/app_bar/custom_app_bar.dart';
-import 'package:educonsult/widgets/app_bar/appbar_subtitle.dart';
-import 'package:educonsult/widgets/custom_text_form_field.dart';
-import 'package:educonsult/widgets/custom_elevated_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:educonsult/widgets/app_bar/custom_app_bar.dart';
+import 'package:educonsult/widgets/custom_text_form_field.dart';
+import 'package:educonsult/widgets/custom_elevated_button.dart';
 import 'package:educonsult/core/app_export.dart';
 
-// ignore_for_file: must_be_immutable
-class ConsulteeProfilePage extends StatelessWidget {
-  ConsulteeProfilePage({Key? key})
-      : super(
-    key: key,
-  );
+class ConsulteeProfilePage extends StatefulWidget {
+  ConsulteeProfilePage({Key? key}) : super(key: key);
 
+  @override
+  _ConsulteeProfilePageState createState() => _ConsulteeProfilePageState();
+}
+
+class _ConsulteeProfilePageState extends State<ConsulteeProfilePage> {
+  late SharedPreferences prefs;
   TextEditingController nameController = TextEditingController();
-
   TextEditingController emailController = TextEditingController();
-
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    initializePreferences();
+  }
+
+  Future<void> initializePreferences() async {
+    prefs = await SharedPreferences.getInstance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +35,7 @@ class ConsulteeProfilePage extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         // appBar: _buildAppBar(context),
-        body:  SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Form(
             key: _formKey,
             child: Container(
@@ -54,15 +64,15 @@ class ConsulteeProfilePage extends StatelessWidget {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          CustomImageView(
-                            imagePath: ImageConstant.imgEllipse12,
-                            height: 100.adaptSize,
-                            width: 100.adaptSize,
-                            radius: BorderRadius.circular(
-                              37.h,
-                            ),
-                            alignment: Alignment.center,
-                          ),
+                          // CustomImageView(
+                          //   imagePath: ImageConstant.imgEllipse12,
+                          //   height: 100.adaptSize,
+                          //   width: 100.adaptSize,
+                          //   radius: BorderRadius.circular(
+                          //     37.h,
+                          //   ),
+                          //   alignment: Alignment.center,
+                          // ),
                         ],
                       ),
                     ),
@@ -104,13 +114,22 @@ class ConsulteeProfilePage extends StatelessWidget {
                       height: 45,
                       width: 220,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Handle logout logic
+                        onPressed: () async {
+                          prefs.setString("name","");
+                          prefs.setString("designation","");
+                          prefs.setBool("login", false);
+
+                          print("log out");
+
+                          bool? res = prefs.getBool("login");
+                          if (res == false) {
+                            print("log out Successful");
+                            Navigator.pushReplacementNamed(context, '/login_register_screen');
+                            print("next");
+                          }
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                    
-                          // You can customize other properties such as padding, shape, etc. here
                         ),
                         child: Text(
                           'Log Out',
