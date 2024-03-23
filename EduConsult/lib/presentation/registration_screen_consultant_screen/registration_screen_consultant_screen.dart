@@ -39,6 +39,93 @@ class _RegistrationScreenConsultantScreenState
 
   ImagePicker imagePicker = new ImagePicker();
 
+  bool checkRegistrationFieldsnotEmpty()
+  {
+     if(nameController.text.toString().isEmpty)
+       {
+         alert("Please enter name!!");
+         return false;
+       }
+     else if(emailController.text.toString().isEmpty)
+     {
+       alert("Please enter email!!");
+       return false;
+     }
+     else if(collegeController.text.toString().isEmpty)
+     {
+       alert("Please enter college!!");
+       return false;
+     }
+     else if(branchController.text.toString().isEmpty)
+     {
+       alert("Please enter branch!!");
+       return false;
+     }
+     else if(passwordController.text.toString().isEmpty)
+     {
+       alert("Please enter password!!");
+       return false;
+     }
+     else if(confirmpasswordController.text.toString().isEmpty)
+     {
+       alert("Please re-enter password!!");
+       return false;
+     }
+     else if(imageNameID == null)
+     {
+       alert("Please select your college ID image!!");
+       return false;
+     }
+     else if(imageNameResume == null)
+     {
+       alert("Please select your resume!!");
+       return false;
+     }
+     else return true;
+  }
+
+  void alert(String content)
+  {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Alert'),
+          content: Text('$content'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void RegistrationSuccessalert(String content)
+  {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Alert'),
+          content: Text('$content'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future<void> getImage() async {
     var getimage = await imagePicker.pickImage(source: ImageSource.gallery);
 
@@ -80,7 +167,7 @@ class _RegistrationScreenConsultantScreenState
       print(selectedYear);
       // print(imageNameID);
       // print(imageDataID);
-      print(imageDataResume);
+      print(imageNameResume);
       print(imageDataResume);
 
       var response = await http.post(url, body: {
@@ -100,8 +187,17 @@ class _RegistrationScreenConsultantScreenState
       if (response.body.isNotEmpty) {
         var res = jsonDecode(response.body);
 
-        if(res == "Image uploaded and record inserted successfully.") print("Successfully uploaded.");
-        else print("Error in uploading : $res");
+        if (res.containsKey("error")) {
+          // Handle error
+          print("Error: ${res["error"]}");
+          RegistrationSuccessalert("Error while Registration, Please try again..");
+
+        } else if (res.containsKey("message")) {
+          // Handle success
+          print("Success: ${res["message"]}");
+          RegistrationSuccessalert("Registration Successfull");
+
+        }
       }
 
     }
@@ -141,8 +237,6 @@ class _RegistrationScreenConsultantScreenState
                       ),
                     ),
                     SizedBox(height: 37.v),
-                    imagePathResume != null ?
-                    Image.file(imagePathResume!) : Text("image not choosed"),
                     _buildName(context),
                     SizedBox(height: 16.v),
                     _buildEmail(context),
@@ -205,7 +299,6 @@ class _RegistrationScreenConsultantScreenState
       controller: nameController,
       hintText: "Name",
       textInputType: TextInputType.visiblePassword,
-      obscureText: true,
     );
   }
 
@@ -349,7 +442,8 @@ class _RegistrationScreenConsultantScreenState
       onPressed: (){
         print("sign up");
         setState(() {
-          uploadImage();
+          bool res = checkRegistrationFieldsnotEmpty();
+          if(res) uploadImage();
         });
       },
       height: 50.v,
