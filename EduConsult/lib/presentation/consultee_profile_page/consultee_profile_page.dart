@@ -64,15 +64,15 @@ class _ConsulteeProfilePageState extends State<ConsulteeProfilePage> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          // CustomImageView(
-                          //   imagePath: ImageConstant.imgEllipse12,
-                          //   height: 100.adaptSize,
-                          //   width: 100.adaptSize,
-                          //   radius: BorderRadius.circular(
-                          //     37.h,
-                          //   ),
-                          //   alignment: Alignment.center,
-                          // ),
+                          CustomImageView(
+                            imagePath: ImageConstant.imgPro,
+                            height: 100.adaptSize,
+                            width: 100.adaptSize,
+                            radius: BorderRadius.circular(
+                              37.h,
+                            ),
+                            alignment: Alignment.center,
+                          ),
                         ],
                       ),
                     ),

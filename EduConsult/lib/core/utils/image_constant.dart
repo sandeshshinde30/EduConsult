@@ -52,6 +52,8 @@ class ImageConstant {
   static String imgProfile = '$imagePath/icons8-male-user-96_-xxxhdpi_.svg';
 
   static String imgContrast = '$imagePath/img_contrast.svg';
+  static String imgPro = '$imagePath/image_profile.png';
+
 
 
   // Common images
