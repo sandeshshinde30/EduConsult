@@ -73,7 +73,7 @@ class AppRoutes {
   static const String college_list_loader =
       '/college_list_loader';
 
-  static const String iAmScreen = '//';
+  static const String iAmScreen = '/i_am_screen';
 
   static const String registrationScreenConsulteeScreen =
       '/registration_screen_consultee_screen';

@@ -1,29 +1,113 @@
-import 'package:educonsult/widgets/custom_text_form_field.dart';
-import 'package:educonsult/widgets/custom_elevated_button.dart';
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:educonsult/core/app_export.dart';
+import 'package:educonsult/widgets/custom_drop_down.dart';
+import 'package:educonsult/widgets/custom_text_form_field.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import '../../widgets/custom_elevated_button.dart';
 
-class RegistrationScreenConsultantScreen extends StatelessWidget {
-  RegistrationScreenConsultantScreen({Key? key})
-      : super(
-          key: key,
-        );
+class RegistrationScreenConsultantScreen extends StatefulWidget {
+  RegistrationScreenConsultantScreen({Key? key}) : super(key: key);
 
+  @override
+  _RegistrationScreenConsultantScreenState createState() =>
+      _RegistrationScreenConsultantScreenState();
+}
+
+class _RegistrationScreenConsultantScreenState
+    extends State<RegistrationScreenConsultantScreen> {
   TextEditingController nameController = TextEditingController();
-
   TextEditingController emailController = TextEditingController();
-
   TextEditingController collegeController = TextEditingController();
-
   TextEditingController branchController = TextEditingController();
-
   TextEditingController refreshController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
-
+  late String selectedYear;
   TextEditingController confirmpasswordController = TextEditingController();
-
+  List<String> dropdownItemList = ["Second Year", "Third Year", "Fourth Year"];
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  File? imagePathID;
+  String? imageNameID;
+  String? imageDataID;
+  File? imagePathResume;
+  String? imageNameResume;
+  String? imageDataResume;
+
+  ImagePicker imagePicker = new ImagePicker();
+
+  Future<void> getImage() async {
+    var getimage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+
+    setState(() {
+      imagePathID = File(getimage!.path);
+      imageNameID = getimage.path.split('/').last;
+      imageDataID = base64Encode(imagePathID!.readAsBytesSync());
+      print(imagePathID);
+      print(imageNameID);
+      print(imageDataID);
+    });
+  }
+
+  Future<void> getImageResume() async {
+    var getimage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+
+    setState(() {
+      imagePathResume = File(getimage!.path);
+      imageNameResume = getimage.path.split('/').last;
+      imageDataResume = base64Encode(imagePathResume!.readAsBytesSync());
+      print(imagePathResume);
+      print(imageNameResume);
+      print(imageDataResume);
+    });
+  }
+
+  Future<void> uploadImage() async
+  {
+    try{
+      var url = Uri.parse("http://192.168.52.145/EduConsult_API/upload_consultant_reg_details.php");
+
+      print(nameController.text.toString());
+      print(emailController.text.toString());
+      print(collegeController.text.toString());
+      print(branchController.text.toString());
+      print(passwordController.text.toString());
+      print(selectedYear);
+      // print(imageNameID);
+      // print(imageDataID);
+      print(imageDataResume);
+      print(imageDataResume);
+
+      var response = await http.post(url, body: {
+        'consultant_name' : nameController.text.toString(),
+        'consultant_email' : emailController.text.toString(),
+        'consultant_college' : collegeController.text.toString(),
+        'consultant_branch' : branchController.text.toString(),
+        'consultant_year' : selectedYear,
+        'consultant_password' : passwordController.text.toString(),
+        'consultant_ID_img_name': imageNameID,
+        'consultant_ID_img': imageDataID,
+        'consultant_Resume_img' : imageDataResume,
+        'consultant_Resume_img_name' : imageNameResume
+
+      });
+
+      if (response.body.isNotEmpty) {
+        var res = jsonDecode(response.body);
+
+        if(res == "Image uploaded and record inserted successfully.") print("Successfully uploaded.");
+        else print("Error in uploading : $res");
+      }
+
+    }
+    catch(e){print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +141,11 @@ class RegistrationScreenConsultantScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 37.v),
-                    _buildTwentyThree(context),
+                    imagePathResume != null ?
+                    Image.file(imagePathResume!) : Text("image not choosed"),
+                    _buildName(context),
                     SizedBox(height: 16.v),
-                    _buildTwentyTwo(context),
+                    _buildEmail(context),
                     SizedBox(height: 16.v),
                     _buildCollege(context),
                     SizedBox(height: 18.v),
@@ -116,37 +202,10 @@ class RegistrationScreenConsultantScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildName(BuildContext context) {
     return CustomTextFormField(
-      width: 303.h,
       controller: nameController,
       hintText: "Name",
-      alignment: Alignment.center,
-    );
-  }
-
-  /// Section Widget
-  Widget _buildTwentyThree(BuildContext context) {
-    return SizedBox(
-      height: 44.v,
-      width: 303.h,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 28.h,
-                bottom: 4.v,
-              ),
-              child: Text(
-                "Email",
-                style: theme.textTheme.titleMedium,
-              ),
-            ),
-          ),
-          _buildName(context),
-        ],
-      ),
+      textInputType: TextInputType.visiblePassword,
+      obscureText: true,
     );
   }
 
@@ -158,33 +217,6 @@ class RegistrationScreenConsultantScreen extends StatelessWidget {
       hintText: "Email",
       textInputType: TextInputType.emailAddress,
       alignment: Alignment.center,
-    );
-  }
-
-  /// Section Widget
-  Widget _buildTwentyTwo(BuildContext context) {
-    return SizedBox(
-      height: 44.v,
-      width: 303.h,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 28.h,
-                bottom: 4.v,
-              ),
-              child: Text(
-                "Email",
-                style: theme.textTheme.titleMedium,
-              ),
-            ),
-          ),
-          _buildEmail(context),
-        ],
-      ),
     );
   }
 
@@ -204,26 +236,24 @@ class RegistrationScreenConsultantScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
+  // /// Section Widget
+  // Widget _buildRefresh(BuildContext context) {
+  //   return CustomDropDown(
+  //     hintText: "Second Year",
+  //     items: dropdownItemList,
+  //   );
+  // }
   Widget _buildRefresh(BuildContext context) {
-    return CustomTextFormField(
-      controller: refreshController,
-      hintText: "Year",
-      suffix: Container(
-        margin: EdgeInsets.fromLTRB(30.h, 12.v, 18.h, 12.v),
-        child: CustomImageView(
-          imagePath: ImageConstant.imgRefresh,
-          height: 16.v,
-        ),
-      ),
-      suffixConstraints: BoxConstraints(
-        maxHeight: 44.v,
-      ),
-      contentPadding: EdgeInsets.only(
-        left: 20.h,
-        top: 11.v,
-        bottom: 11.v,
-      ),
+    selectedYear = dropdownItemList.first; // Initialize selected year
+
+    return CustomDropDown(
+      hintText: "Second Year",
+      items: dropdownItemList,
+      onChanged: (String? value) {
+        setState(() {
+          selectedYear = value ?? dropdownItemList.first; // Update selected year
+        });
+      },
     );
   }
 
@@ -258,13 +288,16 @@ class RegistrationScreenConsultantScreen extends StatelessWidget {
         rightIcon: Container(
           margin: EdgeInsets.only(left: 15.h),
           child: CustomImageView(
-            imagePath: ImageConstant.imgUserBlueGray900,
+            imagePath : ImageConstant.imgUserBlueGray900,
             height: 20.adaptSize,
             width: 20.adaptSize,
           ),
         ),
         buttonStyle: CustomButtonStyles.fillBlue,
         buttonTextStyle: theme.textTheme.titleMedium!,
+        onPressed: () {
+          getImage();
+        },
       ),
     );
   }
@@ -286,6 +319,9 @@ class RegistrationScreenConsultantScreen extends StatelessWidget {
         ),
         buttonStyle: CustomButtonStyles.fillBlue,
         buttonTextStyle: theme.textTheme.titleMedium!,
+        onPressed: (){
+          getImageResume();
+        },
       ),
     );
   }
@@ -310,6 +346,12 @@ class RegistrationScreenConsultantScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildSignUp(BuildContext context) {
     return CustomElevatedButton(
+      onPressed: (){
+        print("sign up");
+        setState(() {
+          uploadImage();
+        });
+      },
       height: 50.v,
       text: "Sign up",
     );
